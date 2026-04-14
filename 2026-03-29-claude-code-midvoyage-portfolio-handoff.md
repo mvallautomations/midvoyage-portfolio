@@ -279,7 +279,7 @@ export default function ThemeToggle() {
 ```
 
 ### Anti-Flash Script (inject in `<head>` BEFORE any CSS)
-```html
+```html   
 <!-- In app/layout.tsx, inside <head> — prevents white flash on dark reload -->
 <script
   dangerouslySetInnerHTML={{

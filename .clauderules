@@ -1,0 +1,80 @@
+# MISH-OS UNIVERSAL AGENT RULES v2.0
+# Copy this to every project root as `.clauderules`
+
+## SESSION START (MANDATORY - RUN BEFORE ANY CODE)
+
+1. READ this file + ./Sessions/[latest].md
+2. Verify Git identity: mvallautomations / mvallarautomates@gmail.com
+3. Run: git pull
+4. If project needs .env: unlock Bitwarden → Get-Secrets.ps1
+5. ANNOUNCE: Environment, branch, last handoff, status
+
+## NAMING (ENFORCED)
+
+- Folders: kebab-case (`handlit-agent-dashboard`)
+- PowerShell: PascalCase.ps1 (`Get-Secrets.ps1`)
+- Bash: kebab-case.sh (`inject-secrets.sh`)
+- Docs: UPPERCASE.md (`README.md`) or kebab-case.md (guides)
+- Assets: name_YYYYMMDD_version.ext (`logo_20260402_v2.svg`)
+- Dates: ISO 8601 (`2026-04-02`)
+- FORBIDDEN: spaces, parentheses, special chars
+
+## GIT WORKFLOW (MANDATORY)
+
+- Commit often: `git add . && git commit -m "[type]: [what]"`
+- Push before switching tools: `git push`
+- NEVER force push without permission
+- Types: feat, fix, chore, docs, refactor, style, test, session
+
+## SECRETS (MANDATORY)
+
+- NEVER hardcode secrets
+- Use Bitwarden auto-injection: `Get-Secrets.ps1 -Project [name] -Environment dev`
+- Naming: `[PROJECT]_[ENV]_[KEY]` (e.g., `HANDLIT_DEV_ANTHROPIC_API_KEY`)
+- NEVER commit .env (only .env.template)
+
+## SESSION END (MANDATORY - RUN BEFORE CLOSING TOOL)
+
+1. git add . && git commit -m "session: [summary]" && git push
+2. Generate-Handoff.ps1 → ./Sessions/YYYY-MM-DD_HH-MM_tool.md
+3. bw lock
+4. ANNOUNCE: Commits pushed, handoff created, safe to close
+
+## PROJECT STRUCTURE (REQUIRED)
+
+```
+project-name/
+├── .clauderules
+├── .gitignore
+├── .env.template
+├── README.md
+├── CHANGELOG.md
+├── Sessions/
+├── docs/
+├── src/
+├── scripts/
+├── assets/
+└── tests/
+```
+
+## CONTINUATION (NEXT AGENT)
+
+Next agent MUST:
+1. Read .clauderules
+2. Read ./Sessions/[latest].md
+3. Run session start protocol
+4. Announce what you learned from handoff
+
+## VALIDATION CHECKLIST
+
+```
+[ ] Naming conventions followed
+[ ] No secrets in code
+[ ] Git identity correct
+[ ] Changes committed
+[ ] Remote synced (git push)
+[ ] Handoff log created
+[ ] Bitwarden locked
+```
+
+**Full docs:** mish-git-sync-protocol, mish-ops-secrets, mish-naming-standard
