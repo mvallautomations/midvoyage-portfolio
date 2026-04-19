@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(ls:*)",
-      "Bash(vercel link:*)"
+      "Bash(vercel link:*)",
+      "mcp__8f9eccf3-cd8e-46f8-9de5-4055202e8a80__resolve-library-id"
     ]
   }
 }
