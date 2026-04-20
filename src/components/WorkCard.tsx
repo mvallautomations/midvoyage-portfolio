@@ -1,27 +1,20 @@
-import Link from "next/link";
+"use client";
 
-/* ============================================================
-   mid·voyage — WorkCard Component
-   Reusable card for case study previews.
-   - Near-square corners (10px)
-   - Terracotta eyebrow label (mono)
-   - No hover fills — border + translate only
-   - Used on homepage + /work index
-   ============================================================ */
+import Link from "next/link";
+import { motion } from "framer-motion";
 
 export interface WorkCardProps {
-  slug: string;             // URL slug: /work/kuya-koks
-  eyebrow: string;          // Category label (terracotta mono)
-  title: string;            // Project name
-  description: string;      // 1–2 sentence summary
-  tags?: string[];          // Tech/skill tags
-  status?: "live" | "in-progress" | "concept"; // Project status
-  year?: string;            // e.g. "2024"
-  featured?: boolean;       // Larger card treatment
-  showcaseLinks?: {
-    label: string;
-    href?: string;
-  }[];
+  slug: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  tags?: string[];
+  status?: "live" | "in-progress" | "concept";
+  year?: string;
+  featured?: boolean;
+  showcaseLinks?: { label: string; href?: string }[];
+  thumbnailGradient?: string;
+  thumbnailImage?: string;
 }
 
 export default function WorkCard({
@@ -34,45 +27,116 @@ export default function WorkCard({
   year,
   featured = false,
   showcaseLinks = [],
+  thumbnailGradient,
+  thumbnailImage,
 }: WorkCardProps) {
-  // Status label text map
-  const statusMap = {
-    live: "Live",
-    "in-progress": "In Progress",
-    concept: "Concept",
-  };
+  const statusMap = { live: "Live", "in-progress": "In Progress", concept: "Concept" };
+  const hasThumbnail = thumbnailImage || thumbnailGradient;
 
   return (
-    <article
+    <motion.article
       className="mv-card"
-      style={{
-        padding: featured ? "2rem" : "1.5rem",
-        height: "100%",
-        display: "flex",
-        flexDirection: "column",
-        gap: "1rem",
-      }}
+      style={{ padding: 0, height: "100%", display: "flex", flexDirection: "column", overflow: "hidden" }}
+      whileHover={{ y: -5, transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] } }}
     >
-        {/* Top meta row: eyebrow + status + year */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: "0.5rem",
-          }}
-        >
-          <span className="eyebrow">{eyebrow}</span>
-
+      {/* Thumbnail / preview area */}
+      {hasThumbnail && (
+        <div style={{ position: "relative", flexShrink: 0 }}>
+          {/* Browser chrome strip */}
           <div
             style={{
+              backgroundColor: "var(--bg-elevated)",
+              borderBottom: "1px solid var(--border-subtle)",
+              padding: "0.5rem 0.75rem",
               display: "flex",
               alignItems: "center",
-              gap: "0.75rem",
+              gap: "0.35rem",
             }}
           >
-            {/* Status dot + label */}
+            {["var(--accent-terra)", "var(--accent-sand)", "var(--accent-sage)"].map((c, i) => (
+              <span
+                key={i}
+                style={{
+                  display: "inline-block",
+                  width: "7px",
+                  height: "7px",
+                  borderRadius: "50%",
+                  backgroundColor: c,
+                  opacity: 0.6,
+                }}
+              />
+            ))}
+            <span
+              style={{
+                fontFamily: "var(--font-jetbrains)",
+                fontSize: "0.6rem",
+                color: "var(--ink-muted)",
+                letterSpacing: "0.06em",
+                marginLeft: "0.5rem",
+                opacity: 0.6,
+              }}
+            >
+              {slug}.vercel.app
+            </span>
+          </div>
+
+          {/* Preview image or gradient */}
+          <div
+            style={{
+              aspectRatio: "16/9",
+              background: thumbnailImage
+                ? `url(${thumbnailImage}) center/cover no-repeat`
+                : (thumbnailGradient ?? "var(--bg-surface)"),
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              position: "relative",
+              overflow: "hidden",
+            }}
+          >
+            {/* Noise overlay for texture */}
+            <div
+              style={{
+                position: "absolute",
+                inset: 0,
+                backgroundImage:
+                  "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E\")",
+                backgroundSize: "200px",
+                opacity: 0.3,
+              }}
+            />
+            {!thumbnailImage && (
+              <span
+                style={{
+                  fontFamily: "var(--font-jetbrains)",
+                  fontSize: "0.62rem",
+                  letterSpacing: "0.1em",
+                  textTransform: "uppercase",
+                  color: "rgba(255,255,255,0.5)",
+                  zIndex: 1,
+                }}
+              >
+                Preview coming soon
+              </span>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Card content */}
+      <div
+        style={{
+          padding: featured ? "2rem" : "1.5rem",
+          flex: 1,
+          display: "flex",
+          flexDirection: "column",
+          gap: "1rem",
+        }}
+      >
+        {/* Top meta row */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem" }}>
+          <span className="eyebrow">{eyebrow}</span>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
             <span
               style={{
                 fontFamily: "var(--font-jetbrains)",
@@ -91,24 +155,13 @@ export default function WorkCard({
                   width: "5px",
                   height: "5px",
                   borderRadius: "50%",
-                  backgroundColor:
-                    status === "live"
-                      ? "var(--accent-sage)"
-                      : "var(--ink-muted)",
+                  backgroundColor: status === "live" ? "var(--accent-sage)" : "var(--ink-muted)",
                 }}
               />
               {statusMap[status]}
             </span>
-
             {year && (
-              <span
-                style={{
-                  fontFamily: "var(--font-jetbrains)",
-                  fontSize: "0.65rem",
-                  color: "var(--ink-muted)",
-                  letterSpacing: "0.05em",
-                }}
-              >
+              <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: "0.65rem", color: "var(--ink-muted)", letterSpacing: "0.05em" }}>
                 {year}
               </span>
             )}
@@ -116,43 +169,29 @@ export default function WorkCard({
         </div>
 
         {/* Title */}
-      <h3
-        style={{
-          fontFamily: "var(--font-jakarta)",
-          fontWeight: 800,
-          fontSize: featured ? "1.75rem" : "1.375rem",
-          lineHeight: 1.15,
-          color: "var(--ink-primary)",
-          letterSpacing: "-0.02em",
-        }}
-      >
-        <Link href={`/work/${slug}`} style={{ textDecoration: "none" }}>
-          {title}
-        </Link>
-      </h3>
-
-        {/* Description */}
-        <p
+        <h3
           style={{
-            fontFamily: "var(--font-dm-sans)",
-            fontSize: "0.9375rem",
-            lineHeight: 1.65,
-            color: "var(--ink-secondary)",
-            flex: 1, /* push tags to bottom */
+            fontFamily: "var(--font-jakarta)",
+            fontWeight: 800,
+            fontSize: featured ? "1.75rem" : "1.375rem",
+            lineHeight: 1.15,
+            color: "var(--ink-primary)",
+            letterSpacing: "-0.02em",
           }}
         >
+          <Link href={`/work/${slug}`} style={{ textDecoration: "none" }}>
+            {title}
+          </Link>
+        </h3>
+
+        {/* Description */}
+        <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "0.9375rem", lineHeight: 1.65, color: "var(--ink-secondary)", flex: 1 }}>
           {description}
         </p>
 
         {/* Tags */}
         {tags.length > 0 && (
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "0.4rem",
-            }}
-          >
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
             {tags.map((tag) => (
               <span
                 key={tag}
@@ -174,6 +213,7 @@ export default function WorkCard({
           </div>
         )}
 
+        {/* Showcase links */}
         {showcaseLinks.length > 0 && (
           <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
             {showcaseLinks.map((item) =>
@@ -212,30 +252,32 @@ export default function WorkCard({
                 >
                   {item.label}
                 </span>
-              ),
+              )
             )}
           </div>
         )}
 
-        {/* Arrow — no-text CTA */}
-      <Link
-        href={`/work/${slug}`}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: "0.375rem",
-          fontFamily: "var(--font-jetbrains)",
-          fontSize: "0.7rem",
-          letterSpacing: "0.08em",
-          textTransform: "uppercase",
-          color: "var(--ink-muted)",
-          marginTop: "0.25rem",
-          width: "fit-content",
-        }}
-      >
-        <span>View case study</span>
-        <span style={{ fontSize: "0.85rem" }}>→</span>
-      </Link>
-    </article>
+        {/* CTA */}
+        <motion.div whileHover={{ x: 3, transition: { duration: 0.15 } }} style={{ width: "fit-content" }}>
+          <Link
+            href={`/work/${slug}`}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.375rem",
+              fontFamily: "var(--font-jetbrains)",
+              fontSize: "0.7rem",
+              letterSpacing: "0.08em",
+              textTransform: "uppercase",
+              color: "var(--ink-muted)",
+              marginTop: "0.25rem",
+            }}
+          >
+            <span>View case study</span>
+            <span style={{ fontSize: "0.85rem" }}>→</span>
+          </Link>
+        </motion.div>
+      </div>
+    </motion.article>
   );
 }

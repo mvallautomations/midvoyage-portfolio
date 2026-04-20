@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import WorkCard, { WorkCardProps } from "@/components/WorkCard";
+import AnimatedWorkGrid from "@/components/AnimatedWorkGrid";
 import Link from "next/link";
 
 /* ============================================================
@@ -30,6 +31,7 @@ const featuredWork: WorkCardProps[] = [
     tags: ["Next.js 15", "Tailwind CSS", "Vercel"],
     status: "in-progress",
     year: "2025",
+    thumbnailGradient: "linear-gradient(135deg, #C85A3C 0%, #8B3A25 100%)",
     showcaseLinks: [
       { label: "Live Demo (soon)" },
       { label: "Source Repo (soon)" },
@@ -39,13 +41,14 @@ const featuredWork: WorkCardProps[] = [
   },
   {
     slug: "ra-bautista",
-    eyebrow: "Legal · Digital Presence",
-    title: "R.A. Bautista Law Office",
+    eyebrow: "Design · Portfolio",
+    title: "R.A. Bautista — Senior Graphic Designer",
     description:
-      "Digital presence strategy and web build for a Philippine law firm. Clean, trust-forward design. Authority-building content structure.",
-    tags: ["Web Design", "Astro", "Content Strategy"],
+      "Personal portfolio for a senior graphic designer. Clean, design-forward presentation with curated work showcase, brand identity projects, and client case studies.",
+    tags: ["Figma", "Web Design", "Brand Identity"],
     status: "concept",
     year: "2025",
+    thumbnailGradient: "linear-gradient(135deg, #3D4B8B 0%, #1E2563 100%)",
     showcaseLinks: [
       { label: "Live Demo (soon)" },
       { label: "Source Repo (soon)" },
@@ -62,6 +65,7 @@ const featuredWork: WorkCardProps[] = [
     tags: ["Research", "Excel", "Strategy"],
     status: "in-progress",
     year: "2025",
+    thumbnailGradient: "linear-gradient(135deg, #6B8A72 0%, #3D5C44 100%)",
     showcaseLinks: [
       { label: "Live Demo (soon)" },
       { label: "Source Repo (soon)" },
@@ -416,18 +420,17 @@ export default function HomePage() {
             </div>
 
             {/* Card grid — responsive 1-2-3 col */}
-            <div
+            <AnimatedWorkGrid
               style={{
                 display: "grid",
-                gridTemplateColumns:
-                  "repeat(auto-fill, minmax(min(100%, 320px), 1fr))",
+                gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 320px), 1fr))",
                 gap: "1.25rem",
               }}
             >
               {featuredWork.map((project) => (
                 <WorkCard key={project.slug} {...project} />
               ))}
-            </div>
+            </AnimatedWorkGrid>
           </div>
         </section>
       </main>
