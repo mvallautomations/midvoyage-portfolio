@@ -33,13 +33,13 @@ const projects: Record<
     tags: ["Next.js 15", "Tailwind CSS", "Vercel"],
   },
   "ra-bautista": {
-    title: "R.A. Bautista Law Office",
-    eyebrow: "Legal · Digital Presence",
+    title: "R.A. Bautista — Senior Graphic Designer",
+    eyebrow: "Design · Portfolio",
     description:
-      "Digital presence strategy and web build for a Philippine law office.",
+      "Personal portfolio for a senior graphic designer. Clean, design-forward presentation with curated work showcase and brand identity projects.",
     status: "Concept",
     year: "2025",
-    tags: ["Astro", "Web Design", "Content Strategy"],
+    tags: ["Figma", "Web Design", "Brand Identity", "Portfolio"],
   },
   "graceland-farm": {
     title: "Graceland Farm, Indang Cavite",

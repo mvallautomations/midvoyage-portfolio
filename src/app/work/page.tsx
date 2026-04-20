@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import WorkCard, { WorkCardProps } from "@/components/WorkCard";
+import AnimatedWorkGrid from "@/components/AnimatedWorkGrid";
 
 /* ============================================================
    mid·voyage — Work Index (/work)
@@ -26,6 +27,7 @@ const allWork: WorkCardProps[] = [
     status: "in-progress",
     year: "2025",
     featured: true,
+    thumbnailGradient: "linear-gradient(135deg, #C85A3C 0%, #8B3A25 100%)",
     showcaseLinks: [
       { label: "Live Demo (soon)" },
       { label: "Source Repo (soon)" },
@@ -35,13 +37,14 @@ const allWork: WorkCardProps[] = [
   },
   {
     slug: "ra-bautista",
-    eyebrow: "Legal · Digital Presence",
-    title: "R.A. Bautista Law Office",
+    eyebrow: "Design · Portfolio",
+    title: "R.A. Bautista — Senior Graphic Designer",
     description:
-      "Digital presence strategy and web build for a Philippine law office. The brief: look credible online without spending money. Astro + content architecture.",
-    tags: ["Astro", "Web Design", "Content Strategy", "SEO"],
+      "Personal portfolio for a senior graphic designer. Clean, design-forward presentation with curated work showcase, brand identity projects, and client case studies.",
+    tags: ["Figma", "Web Design", "Brand Identity", "Portfolio"],
     status: "concept",
     year: "2025",
+    thumbnailGradient: "linear-gradient(135deg, #3D4B8B 0%, #1E2563 100%)",
     showcaseLinks: [
       { label: "Live Demo (soon)" },
       { label: "Source Repo (soon)" },
@@ -58,6 +61,7 @@ const allWork: WorkCardProps[] = [
     tags: ["Excel", "Research", "Strategy", "Competitive Intel"],
     status: "in-progress",
     year: "2025",
+    thumbnailGradient: "linear-gradient(135deg, #6B8A72 0%, #3D5C44 100%)",
     showcaseLinks: [
       { label: "Live Demo (soon)" },
       { label: "Source Repo (soon)" },
@@ -136,18 +140,17 @@ export default function WorkPage() {
         >
           <div className="mv-container">
             {/* Grid — 2 col on md+, 1 col mobile */}
-            <div
+            <AnimatedWorkGrid
               style={{
                 display: "grid",
-                gridTemplateColumns:
-                  "repeat(auto-fill, minmax(min(100%, 340px), 1fr))",
+                gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 340px), 1fr))",
                 gap: "1.25rem",
               }}
             >
               {allWork.map((project) => (
                 <WorkCard key={project.slug} {...project} />
               ))}
-            </div>
+            </AnimatedWorkGrid>
 
             {/* Future state note — placeholder for when more projects land */}
             <div
