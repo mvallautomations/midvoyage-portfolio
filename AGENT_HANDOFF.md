@@ -1,7 +1,7 @@
 # mid·voyage Portfolio — Agent Handoff
 **Project:** midvoyage-portfolio
-**Owner:** Mishael Vallar / handl'it AI Consultancy
-**Local path:** `D:\AI_Dev\WorkspaceOS\Projects\midvoyage-portfolio\`
+**Owner:** Mishael Vallar 
+**Local path:** midvoyage-portfolio
 **Target domain:** `mvallarautomations.cc`
 **Deploy target:** Vercel free tier
 **Git user:** `mvallautomations` | `mvallarautomates@gmail.com`

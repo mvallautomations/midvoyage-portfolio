@@ -5,11 +5,10 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 /* ============================================================
-   mid·voyage — Navigation Component
+   mid·voyage — Navigation Component (WCAG 2.2 Compliant)
    - Mono type for all nav labels (JetBrains Mono spec)
-   - Minimal editorial style — no fills, no heavy UI
-   - Theme toggle: light ↔ dark
-   - Mobile: hamburger hidden menu
+   - Segmented theme toggle (Light / Dark) resolving name mismatch
+   - Contrast enhanced to var(--ink-secondary) / font-weight 500
    ============================================================ */
 
 const navLinks = [
@@ -24,7 +23,6 @@ export default function Nav() {
   const [isDark, setIsDark] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Sync theme with <html data-theme>
   useEffect(() => {
     const html = document.documentElement;
     const stored = localStorage.getItem("mv-theme");
@@ -34,12 +32,13 @@ export default function Nav() {
     }
   }, []);
 
-  function toggleTheme() {
+  function setTheme(dark: boolean) {
     const html = document.documentElement;
-    const next = isDark ? "light" : "dark";
-    html.setAttribute("data-theme", next);
+    const next = dark ? "dark" : "light";
+    html.setAttribute("data-theme", dark ? "dark" : "");
+    if (!dark) html.removeAttribute("data-theme");
     localStorage.setItem("mv-theme", next);
-    setIsDark(!isDark);
+    setIsDark(dark);
   }
 
   return (
@@ -62,7 +61,6 @@ export default function Nav() {
             height: "64px",
           }}
         >
-          {/* Brand wordmark */}
           <Link
             href="/"
             style={{
@@ -74,9 +72,9 @@ export default function Nav() {
               alignItems: "center",
               gap: "0.5rem",
               letterSpacing: "-0.01em",
+              textDecoration: "none",
             }}
           >
-            {/* Filled dot mark — signature brand element */}
             <span
               style={{
                 display: "inline-block",
@@ -90,7 +88,6 @@ export default function Nav() {
             <span>mid·voyage</span>
           </Link>
 
-          {/* Desktop nav links */}
           <div
             className="desktop-nav"
             style={{
@@ -107,15 +104,15 @@ export default function Nav() {
                 style={{
                   fontFamily: "var(--font-jetbrains)",
                   fontSize: "0.75rem",
-                  fontWeight: 400,
+                  fontWeight: 500,
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
                   color:
                     pathname === link.href
                       ? "var(--ink-primary)"
-                      : "var(--ink-muted)",
+                      : "var(--ink-secondary)",
                   transition: "color var(--dur-fast)",
-                  textDecoration: pathname === link.href ? "none" : "none",
+                  textDecoration: "none",
                   borderBottom:
                     pathname === link.href
                       ? "1px solid var(--accent-terra)"
@@ -127,36 +124,66 @@ export default function Nav() {
               </Link>
             ))}
 
-            {/* Theme toggle */}
-            <button
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
+            {/* Segmented theme toggle matching components-nav.html */}
+            <div
               style={{
-                background: "none",
+                display: "inline-flex",
+                alignItems: "center",
                 border: "1px solid var(--border-light)",
                 borderRadius: "3px",
-                padding: "0.4rem 0.75rem",
-                cursor: "pointer",
-                fontFamily: "var(--font-jetbrains)",
-                fontSize: "0.7rem",
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color: "var(--ink-muted)",
-                transition: "all var(--dur-fast)",
-                minHeight: "44px", /* touch target */
+                overflow: "hidden",
+                background: "transparent",
               }}
+              role="group"
+              aria-label="Theme selection"
             >
-              {isDark ? "Light" : "Dark"}
-            </button>
+              <button
+                onClick={() => setTheme(false)}
+                aria-label="Light theme"
+                aria-pressed={!isDark}
+                style={{
+                  background: !isDark ? "var(--bg-elevated)" : "none",
+                  border: "none",
+                  minHeight: "44px",
+                  padding: "0 0.75rem",
+                  fontFamily: "var(--font-jetbrains)",
+                  fontSize: "0.7rem",
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: !isDark ? "var(--ink-primary)" : "var(--ink-secondary)",
+                  cursor: "pointer",
+                }}
+              >
+                Light
+              </button>
+              <button
+                onClick={() => setTheme(true)}
+                aria-label="Dark theme"
+                aria-pressed={isDark}
+                style={{
+                  background: isDark ? "var(--bg-elevated)" : "none",
+                  border: "none",
+                  minHeight: "44px",
+                  padding: "0 0.75rem",
+                  fontFamily: "var(--font-jetbrains)",
+                  fontSize: "0.7rem",
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: isDark ? "var(--ink-primary)" : "var(--ink-secondary)",
+                  cursor: "pointer",
+                }}
+              >
+                Dark
+              </button>
+            </div>
           </div>
 
-          {/* Mobile hamburger */}
           <button
             className="mobile-menu-btn"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
             style={{
-              display: "none", /* shown via media query in CSS */
+              display: "none",
               background: "none",
               border: "none",
               cursor: "pointer",
@@ -171,7 +198,6 @@ export default function Nav() {
           </button>
         </div>
 
-        {/* Mobile dropdown */}
         {menuOpen && (
           <div
             style={{
@@ -191,42 +217,60 @@ export default function Nav() {
                 style={{
                   fontFamily: "var(--font-jetbrains)",
                   fontSize: "0.75rem",
+                  fontWeight: 500,
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
                   color:
                     pathname === link.href
                       ? "var(--ink-primary)"
-                      : "var(--ink-muted)",
+                      : "var(--ink-secondary)",
                   padding: "0.5rem 0",
+                  textDecoration: "none",
                 }}
               >
                 {link.label}
               </Link>
             ))}
-            <button
-              onClick={() => { toggleTheme(); setMenuOpen(false); }}
-              style={{
-                background: "none",
-                border: "1px solid var(--border-light)",
-                borderRadius: "3px",
-                padding: "0.5rem",
-                fontFamily: "var(--font-jetbrains)",
-                fontSize: "0.7rem",
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
-                color: "var(--ink-muted)",
-                cursor: "pointer",
-                width: "fit-content",
-                minHeight: "44px",
-              }}
-            >
-              {isDark ? "Light Mode" : "Dark Mode"}
-            </button>
+            <div style={{ display: "flex", gap: "0.5rem" }}>
+              <button
+                onClick={() => { setTheme(false); setMenuOpen(false); }}
+                aria-label="Light theme"
+                style={{
+                  background: !isDark ? "var(--bg-elevated)" : "none",
+                  border: "1px solid var(--border-light)",
+                  borderRadius: "3px",
+                  padding: "0.5rem 1rem",
+                  fontFamily: "var(--font-jetbrains)",
+                  fontSize: "0.7rem",
+                  color: !isDark ? "var(--ink-primary)" : "var(--ink-secondary)",
+                  minHeight: "44px",
+                  cursor: "pointer",
+                }}
+              >
+                Light
+              </button>
+              <button
+                onClick={() => { setTheme(true); setMenuOpen(false); }}
+                aria-label="Dark theme"
+                style={{
+                  background: isDark ? "var(--bg-elevated)" : "none",
+                  border: "1px solid var(--border-light)",
+                  borderRadius: "3px",
+                  padding: "0.5rem 1rem",
+                  fontFamily: "var(--font-jetbrains)",
+                  fontSize: "0.7rem",
+                  color: isDark ? "var(--ink-primary)" : "var(--ink-secondary)",
+                  minHeight: "44px",
+                  cursor: "pointer",
+                }}
+              >
+                Dark
+              </button>
+            </div>
           </div>
         )}
       </nav>
 
-      {/* Mobile nav responsive styles */}
       <style>{`
         @media (max-width: 640px) {
           .desktop-nav { display: none !important; }

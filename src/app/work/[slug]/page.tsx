@@ -1,17 +1,9 @@
-import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import Link from "next/link";
 
-/* ============================================================
-   mid·voyage — Case Study Placeholder (/work/[slug])
-   Placeholder shell for all 3 projects.
-   Replace content with real MDX case studies per project.
-   ============================================================ */
-
-// === PROJECT DATA MAP ===
-// Single source of truth — update as case studies are written
 const projects: Record<
   string,
   {
@@ -24,22 +16,22 @@ const projects: Record<
   }
 > = {
   "kuya-koks": {
-    title: "Kuya Kok's Griddle & Grill",
-    eyebrow: "Restaurant · Web",
+    title: "Kuya Kok's Brand Audit First. Business Audit Ongoing.",
+    eyebrow: "Restaurant · Systems Architecture & Brand Audit",
     description:
-      "Full website build for a Filipino restaurant. Next.js 15, mobile-first, deployed to a custom domain.",
-    status: "In Progress",
-    year: "2025",
-    tags: ["Next.js 15", "Tailwind CSS", "Vercel"],
+      "Comprehensive brand audit and operational systems overhaul for a Filipino casual dining restaurant.",
+    status: "Active Engagement",
+    year: "2026",
+    tags: ["Brand Audit", "Systems Architecture", "n8n Automations", "AI Agents"],
   },
   "ra-bautista": {
-    title: "R.A. Bautista Law Office",
-    eyebrow: "Legal · Digital Presence",
+    title: "R.A. Studio — Senior Brand Partner",
+    eyebrow: "Creative · Positioning Refresh",
     description:
-      "Digital presence strategy and web build for a Philippine law office.",
-    status: "Concept",
-    year: "2025",
-    tags: ["Astro", "Web Design", "Content Strategy"],
+      "Portfolio audit and value-based positioning refresh for a 14+ yr senior creative. Pivoted from hourly lowball rates to selling bought-back executive time.",
+    status: "Live",
+    year: "2026",
+    tags: ["React / Vite", "Positioning Refresh", "Value-Based Retainers"],
   },
   "graceland-farm": {
     title: "Graceland Farm, Indang Cavite",
@@ -57,28 +49,22 @@ const projectShowcaseLinks: Record<
   { label: string; href?: string }[]
 > = {
   "kuya-koks": [
-    { label: "Live Demo (soon)" },
-    { label: "Source Repo (soon)" },
-    { label: "Deployment (soon)" },
+    { label: "Client Roadmap", href: "/blog" },
+    { label: "Systems Architecture", href: "/about" },
   ],
   "ra-bautista": [
-    { label: "Live Demo (soon)" },
-    { label: "Source Repo (soon)" },
-    { label: "Deployment (soon)" },
+    { label: "Source Repo", href: "https://github.com/mvallautomations/ra-portfolio-site" },
   ],
   "graceland-farm": [
     { label: "Live Demo (soon)" },
     { label: "Source Repo (soon)" },
-    { label: "Deployment (soon)" },
   ],
 };
 
-// Generate static params for all known slugs
 export function generateStaticParams() {
   return Object.keys(projects).map((slug) => ({ slug }));
 }
 
-// Dynamic metadata per case study
 export async function generateMetadata({
   params,
 }: {
@@ -102,7 +88,6 @@ export default async function CaseStudyPage({
   const { slug } = await params;
   const project = projects[slug];
 
-  // Return 404 for unknown slugs
   if (!project) notFound();
 
   return (
@@ -118,7 +103,6 @@ export default async function CaseStudyPage({
           }}
         >
           <div className="mv-container">
-            {/* Breadcrumb */}
             <div
               style={{
                 display: "flex",
@@ -131,10 +115,12 @@ export default async function CaseStudyPage({
                 href="/work"
                 style={{
                   fontFamily: "var(--font-jetbrains)",
-                  fontSize: "0.7rem",
+                  fontSize: "0.75rem",
+                  fontWeight: 500,
                   letterSpacing: "0.08em",
                   textTransform: "uppercase",
-                  color: "var(--ink-muted)",
+                  color: "var(--ink-secondary)",
+                  textDecoration: "none",
                 }}
               >
                 ← Work
@@ -155,18 +141,17 @@ export default async function CaseStudyPage({
                 fontSize: "clamp(2rem, 5.5vw, 3.5rem)",
                 lineHeight: 1.05,
                 letterSpacing: "-0.03em",
-                maxWidth: "20ch",
+                maxWidth: "22ch",
                 marginBottom: "1.5rem",
               }}
             >
               {project.title}
             </h1>
 
-            {/* Meta row */}
             <div
               style={{
                 display: "flex",
-                gap: "2rem",
+                gap: "2.5rem",
                 flexWrap: "wrap",
                 marginBottom: "2rem",
               }}
@@ -179,10 +164,11 @@ export default async function CaseStudyPage({
                   <p
                     style={{
                       fontFamily: "var(--font-jetbrains)",
-                      fontSize: "0.65rem",
+                      fontSize: "0.7rem",
+                      fontWeight: 500,
                       letterSpacing: "0.08em",
                       textTransform: "uppercase",
-                      color: "var(--ink-muted)",
+                      color: "var(--ink-secondary)",
                       marginBottom: "0.25rem",
                     }}
                   >
@@ -191,8 +177,9 @@ export default async function CaseStudyPage({
                   <p
                     style={{
                       fontFamily: "var(--font-dm-sans)",
-                      fontSize: "0.9375rem",
+                      fontSize: "1rem",
                       color: "var(--ink-primary)",
+                      fontWeight: 500,
                     }}
                   >
                     {meta.value}
@@ -201,20 +188,20 @@ export default async function CaseStudyPage({
               ))}
             </div>
 
-            {/* Tags */}
             <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
               {project.tags.map((tag) => (
                 <span
                   key={tag}
                   style={{
                     fontFamily: "var(--font-jetbrains)",
-                    fontSize: "0.65rem",
+                    fontSize: "0.7rem",
+                    fontWeight: 500,
                     letterSpacing: "0.06em",
                     textTransform: "uppercase",
-                    padding: "0.2rem 0.6rem",
+                    padding: "0.25rem 0.65rem",
                     borderRadius: "3px",
                     border: "1px solid var(--border-light)",
-                    color: "var(--ink-muted)",
+                    color: "var(--ink-secondary)",
                     backgroundColor: "var(--bg-elevated)",
                   }}
                 >
@@ -226,9 +213,9 @@ export default async function CaseStudyPage({
             <div
               style={{
                 display: "flex",
-                gap: "0.45rem",
+                gap: "0.5rem",
                 flexWrap: "wrap",
-                marginTop: "1rem",
+                marginTop: "1.5rem",
               }}
             >
               {projectShowcaseLinks[slug]?.map((item) =>
@@ -238,103 +225,227 @@ export default async function CaseStudyPage({
                     href={item.href}
                     style={{
                       fontFamily: "var(--font-jetbrains)",
-                      fontSize: "0.65rem",
+                      fontSize: "0.7rem",
+                      fontWeight: 500,
                       letterSpacing: "0.06em",
                       textTransform: "uppercase",
-                      padding: "0.25rem 0.55rem",
+                      padding: "0.35rem 0.7rem",
                       borderRadius: "3px",
-                      border: "1px solid var(--border-light)",
-                      color: "var(--ink-muted)",
+                      border: "1px solid var(--border-medium)",
+                      color: "var(--ink-primary)",
+                      backgroundColor: "var(--bg-elevated)",
+                      textDecoration: "none",
                     }}
                   >
-                    {item.label}
+                    {item.label} →
                   </Link>
-                ) : (
-                  <span
-                    key={item.label}
-                    style={{
-                      fontFamily: "var(--font-jetbrains)",
-                      fontSize: "0.65rem",
-                      letterSpacing: "0.06em",
-                      textTransform: "uppercase",
-                      padding: "0.25rem 0.55rem",
-                      borderRadius: "3px",
-                      border: "1px dashed var(--border-light)",
-                      color: "var(--ink-muted)",
-                      opacity: 0.7,
-                    }}
-                  >
-                    {item.label}
-                  </span>
-                ),
+                ) : null
               )}
             </div>
           </div>
         </section>
 
-        {/* Divider */}
         <div className="mv-container">
           <hr className="mv-rule" />
         </div>
 
-        {/* === PLACEHOLDER CONTENT === */}
-        {/* Replace this section with MDX import when case study is written */}
+        {/* === CASE STUDY CONTENT === */}
         <section
           style={{
             paddingBlock: "clamp(3rem, 6vw, 5rem)",
           }}
         >
-          <div
-            className="mv-container"
-            style={{ maxWidth: "72ch" }}
-          >
-            {/* Placeholder state */}
-            <div
-              style={{
-                backgroundColor: "var(--bg-surface)",
-                border: "1px dashed var(--border-light)",
-                borderRadius: "10px",
-                padding: "3rem",
-                textAlign: "center",
-              }}
-            >
-              <span
+          <div className="mv-container" style={{ maxWidth: "72ch" }}>
+            {slug === "kuya-koks" ? (
+              <article style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
+                <div style={{ padding: "2rem", backgroundColor: "var(--bg-surface)", borderRadius: "6px", borderLeft: "4px solid var(--accent-terra)" }}>
+                  <p style={{ fontFamily: "var(--font-dm-serif)", fontStyle: "italic", fontWeight: 700, fontSize: "1.25rem", color: "var(--ink-primary)", marginBottom: "0.5rem" }}>
+                    "Dispatches from the middle of figuring it out."
+                  </p>
+                  <p style={{ fontFamily: "var(--font-jetbrains)", fontSize: "0.75rem", color: "var(--ink-secondary)", textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                    Mishael Vallar — Quiet Observer & Systems Cartographer
+                  </p>
+                </div>
+
+                <div>
+                  <h2 style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.75rem", fontWeight: 800, marginBottom: "1rem", color: "var(--ink-primary)" }}>
+                    1. The Audit Foundation
+                  </h2>
+                  <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", lineHeight: 1.7, color: "var(--ink-primary)", marginBottom: "1rem" }}>
+                    Kuya Kok's Griddle and Grill represents a classic staple of Filipino casual dining—built around high-energy neighborhood service, family gatherings, and authentic griddle specialties. However, like many rapidly growing SMB restaurants in the Philippines, their operational friction grew in lockstep with customer demand.
+                  </p>
+                  <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", lineHeight: 1.7, color: "var(--ink-secondary)" }}>
+                    Rather than immediately prescribing software solutions or complex automation tools, our engagement initiated with a surgical **Brand Audit First** approach. Before automating operational flows, a business must establish unwavering clarity in its brand identity, customer touchpoints, and value proposition.
+                  </p>
+                </div>
+
+                <div>
+                  <h2 style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.75rem", fontWeight: 800, marginBottom: "1rem", color: "var(--ink-primary)" }}>
+                    2. Diagnosing Operational Friction
+                  </h2>
+                  <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", lineHeight: 1.7, color: "var(--ink-primary)", marginBottom: "1.5rem" }}>
+                    During the ongoing discovery and diagnostic mapping, several core structural challenges emerged that required immediate alignment:
+                  </p>
+                  <ul style={{ display: "flex", flexDirection: "column", gap: "1rem", paddingLeft: "1.25rem", fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", color: "var(--ink-primary)", lineHeight: 1.6 }}>
+                    <li><strong>Order Intake & Flow:</strong> Reliance on manual order sheets creating communication bottlenecks between front-of-house staff and the kitchen griddle stations.</li>
+                    <li><strong>Inventory & Supply Tracking:</strong> Stock levels for critical perishable ingredients tracked informally through memory and paper checklists.</li>
+                    <li><strong>Compliance & HR Records:</strong> Informal management of mandatory statutory reporting (BIR receipts, SSS, PhilHealth contributions) and staff scheduling.</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h2 style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.75rem", fontWeight: 800, marginBottom: "1rem", color: "var(--ink-primary)" }}>
+                    3. The Roadmap: From Tier 1 Automation to Tier 2 AI Agents
+                  </h2>
+                  <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", lineHeight: 1.7, color: "var(--ink-primary)", marginBottom: "1.5rem" }}>
+                    To ensure sustainable execution without overwhelming daily restaurant operations, the transformation follows a phased architectural progression:
+                  </p>
+                  
+                  <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+                    <div style={{ padding: "1.5rem", backgroundColor: "var(--bg-elevated)", borderRadius: "6px", border: "1px solid var(--border-light)" }}>
+                      <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: "0.7rem", color: "var(--accent-terra)", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 500 }}>
+                        Phase 1 — Brand Audit & Digital Presence (Active)
+                      </span>
+                      <h3 style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.25rem", fontWeight: 700, margin: "0.5rem 0", color: "var(--ink-primary)" }}>
+                        Standardizing Identity & Touchpoints
+                      </h3>
+                      <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "0.95rem", color: "var(--ink-secondary)", lineHeight: 1.6 }}>
+                        Establishing a cohesive digital presence, responsive web interface, and clear menu architecture mapped to customer ordering behaviors.
+                      </p>
+                    </div>
+
+                    <div style={{ padding: "1.5rem", backgroundColor: "var(--bg-elevated)", borderRadius: "6px", border: "1px solid var(--border-light)" }}>
+                      <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: "0.7rem", color: "var(--accent-terra)", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 500 }}>
+                        Phase 2 — Tier 1 Automations (Pending)
+                      </span>
+                      <h3 style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.25rem", fontWeight: 700, margin: "0.5rem 0", color: "var(--ink-primary)" }}>
+                        n8n Operational Workflows
+                      </h3>
+                      <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "0.95rem", color: "var(--ink-secondary)", lineHeight: 1.6 }}>
+                        Deploying automated inventory depletion triggers, digital shift scheduling alerts, and standardized payroll calculation pipelines.
+                      </p>
+                    </div>
+
+                    <div style={{ padding: "1.5rem", backgroundColor: "var(--bg-elevated)", borderRadius: "6px", border: "1px solid var(--border-light)" }}>
+                      <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: "0.7rem", color: "var(--accent-terra)", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 500 }}>
+                        Phase 3 — Tier 2 AI Agents (Planned)
+                      </span>
+                      <h3 style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.25rem", fontWeight: 700, margin: "0.5rem 0", color: "var(--ink-primary)" }}>
+                        Intelligent Restaurant Assistants
+                      </h3>
+                      <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "0.95rem", color: "var(--ink-secondary)", lineHeight: 1.6 }}>
+                        Integrating conversational AI agents to handle reservations, customer inquiries, and predictive supply chain restocking based on historical sales volume.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div style={{ paddingTop: "2rem", borderTop: "1px solid var(--border-subtle)" }}>
+                  <Link href="/work" style={{ fontFamily: "var(--font-jetbrains)", fontSize: "0.8rem", fontWeight: 500, color: "var(--ink-primary)", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                    ← Back to all work
+                  </Link>
+                </div>
+              </article>
+            ) : slug === "ra-bautista" ? (
+              <article style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
+                <div style={{ padding: "2rem", backgroundColor: "var(--bg-surface)", borderRadius: "6px", borderLeft: "4px solid var(--accent-terra)" }}>
+                  <p style={{ fontFamily: "var(--font-dm-serif)", fontStyle: "italic", fontWeight: 700, fontSize: "1.25rem", color: "var(--ink-primary)", marginBottom: "0.5rem" }}>
+                    "Repositioning creative mastery from hourly labor to executive leverage."
+                  </p>
+                  <p style={{ fontFamily: "var(--font-jetbrains)", fontSize: "0.75rem", color: "var(--ink-secondary)", textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                    Case Study · Freelance Positioning & Brand Architecture Audit
+                  </p>
+                </div>
+
+                <div>
+                  <h2 style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.75rem", fontWeight: 800, marginBottom: "1rem", color: "var(--ink-primary)" }}>
+                    1. The Hourly Freelancer Trap
+                  </h2>
+                  <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", lineHeight: 1.7, color: "var(--ink-primary)", marginBottom: "1rem" }}>
+                    Despite possessing 14+ years of tier-1 graphic design and visual storytelling mastery, the client was trapped in a common professional bottleneck: competing on hourly rates, enduring scope creep, and fielding lowball negotiations from transactional clients.
+                  </p>
+                  <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", lineHeight: 1.7, color: "var(--ink-secondary)" }}>
+                    When senior creatives position themselves as generalist executioners, buyers commoditize their time. To command high-value retainers, the entire portfolio architecture needed to shift from showcasing individual aesthetic deliverables to demonstrating compounding business leverage.
+                  </p>
+                </div>
+
+                <div>
+                  <h2 style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.75rem", fontWeight: 800, marginBottom: "1rem", color: "var(--ink-primary)" }}>
+                    2. The Audit & Positioning Refresh
+                  </h2>
+                  <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", lineHeight: 1.7, color: "var(--ink-primary)", marginBottom: "1.5rem" }}>
+                    We conducted a surgical portfolio overhaul focused on shifting the narrative to attracting mature founders willing to pay to buy back their executive time:
+                  </p>
+                  <ul style={{ display: "flex", flexDirection: "column", gap: "1rem", paddingLeft: "1.25rem", fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", color: "var(--ink-primary)", lineHeight: 1.6 }}>
+                    <li><strong>Anonymized Executive Branding:</strong> Rebranded the portfolio entity to **R.A. Studio**, establishing an authoritative studio presence that commands peer-level respect rather than subordinate freelancer dynamics.</li>
+                    <li><strong>Selling Bought-Back Time:</strong> Framed her comprehensive design systems not as static artwork, but as autonomous brand engines that allow leadership teams to deploy market assets at 10x speed without operational friction.</li>
+                    <li><strong>High-Contrast Premium UI:</strong> Rebuilt the web architecture using React, Vite, and Tailwind with dark glassmorphic tokens and Geist typography—signaling non-negotiable premium standards.</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h2 style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.75rem", fontWeight: 800, marginBottom: "1rem", color: "var(--ink-primary)" }}>
+                    3. Strategic Impact
+                  </h2>
+                  <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", lineHeight: 1.7, color: "var(--ink-primary)", marginBottom: "1.5rem" }}>
+                    By structuring her offerings around high-ROI brand retainers and eliminating hourly rate cards, the repositioned portfolio immediately screens out lowball buyers and attracts established clients who value autonomy, speed, and proven mastery.
+                  </p>
+                </div>
+
+                <div style={{ paddingTop: "2rem", borderTop: "1px solid var(--border-subtle)" }}>
+                  <Link href="/work" style={{ fontFamily: "var(--font-jetbrains)", fontSize: "0.8rem", fontWeight: 500, color: "var(--ink-primary)", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                    ← Back to all work
+                  </Link>
+                </div>
+              </article>
+            ) : (
+              <div
                 style={{
-                  display: "inline-block",
-                  width: "8px",
-                  height: "8px",
-                  borderRadius: "50%",
-                  backgroundColor: "var(--accent-terra)",
-                  marginBottom: "1.5rem",
-                }}
-              />
-              <p
-                style={{
-                  fontFamily: "var(--font-jakarta)",
-                  fontWeight: 800,
-                  fontSize: "1.25rem",
-                  color: "var(--ink-primary)",
-                  marginBottom: "0.75rem",
+                  backgroundColor: "var(--bg-surface)",
+                  border: "1px dashed var(--border-light)",
+                  borderRadius: "10px",
+                  padding: "3rem",
+                  textAlign: "center",
                 }}
               >
-                Case study in progress.
-              </p>
-              <p
-                style={{
-                  fontFamily: "var(--font-dm-sans)",
-                  fontSize: "0.9375rem",
-                  color: "var(--ink-secondary)",
-                  lineHeight: 1.65,
-                  maxWidth: "40ch",
-                  margin: "0 auto 1.5rem",
-                }}
-              >
-                {project.description} Full write-up coming soon.
-              </p>
-              <Link href="/work" className="mv-btn">
-                ← Back to all work
-              </Link>
-            </div>
+                <span
+                  style={{
+                    display: "inline-block",
+                    width: "8px",
+                    height: "8px",
+                    borderRadius: "50%",
+                    backgroundColor: "var(--accent-terra)",
+                    marginBottom: "1.5rem",
+                  }}
+                />
+                <p
+                  style={{
+                    fontFamily: "var(--font-jakarta)",
+                    fontWeight: 800,
+                    fontSize: "1.25rem",
+                    color: "var(--ink-primary)",
+                    marginBottom: "0.75rem",
+                  }}
+                >
+                  Case study in progress.
+                </p>
+                <p
+                  style={{
+                    fontFamily: "var(--font-dm-sans)",
+                    fontSize: "0.9375rem",
+                    color: "var(--ink-secondary)",
+                    lineHeight: 1.65,
+                    maxWidth: "40ch",
+                    margin: "0 auto 1.5rem",
+                  }}
+                >
+                  {project.description} Full write-up coming soon.
+                </p>
+                <Link href="/work" style={{ fontFamily: "var(--font-jetbrains)", fontSize: "0.75rem", color: "var(--ink-primary)", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.08em" }}>
+                  ← Back to all work
+                </Link>
+              </div>
+            )}
           </div>
         </section>
       </main>

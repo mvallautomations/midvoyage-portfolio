@@ -39,17 +39,15 @@ const featuredWork: WorkCardProps[] = [
   },
   {
     slug: "ra-bautista",
-    eyebrow: "Legal · Digital Presence",
-    title: "R.A. Bautista Law Office",
+    eyebrow: "Creative · Positioning Refresh",
+    title: "R.A. Studio — Senior Brand Partner",
     description:
-      "Digital presence strategy and web build for a Philippine law firm. Clean, trust-forward design. Authority-building content structure.",
-    tags: ["Web Design", "Astro", "Content Strategy"],
-    status: "concept",
-    year: "2025",
+      "Portfolio audit and value-based positioning refresh for a 14+ yr senior creative. Pivoted from hourly lowball rates to selling bought-back executive time.",
+    tags: ["React / Vite", "Positioning Refresh", "Value-Based Retainers"],
+    status: "live",
+    year: "2026",
     showcaseLinks: [
-      { label: "Live Demo (soon)" },
-      { label: "Source Repo (soon)" },
-      { label: "Deployment (soon)" },
+      { label: "Source Repo", href: "https://github.com/mvallautomations/ra-portfolio-site" },
       { label: "Case Study", href: "/work/ra-bautista" },
     ],
   },
@@ -281,11 +279,11 @@ export default function HomePage() {
                     fontWeight: 500,
                   }}
                 >
-                  handl&apos;it AI Consultancy
+                  mid·voyage Systems &amp; Workflows
                 </strong>
-                , based in the Philippines. I build AI automation systems,
-                operations workflows, and digital infrastructure for businesses
-                that don&apos;t have time to figure it out themselves.
+                , based in the Philippines. I build AI automation pipelines,
+                operations architecture, and digital infrastructure for creators and SMBs
+                seeking lean, battle-tested leverage.
               </p>
               <p
                 style={{

@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   },
   description:
     "Solo founder. AI systems builder. Dispatches from the middle of figuring it out.",
-  keywords: ["AI consultant", "Philippines", "solo founder", "handl'it", "automation"],
+  keywords: ["systems builder", "Philippines", "solo founder", "mid-voyage", "automation", "AI workflows"],
   authors: [{ name: "Mishael Vallar", url: "https://mvallarautomations.cc" }],
   openGraph: {
     type: "website",

@@ -11,7 +11,7 @@
 
 ## AGENT PRIMER — READ THIS FIRST
 
-You are continuing work for **Mishael Vallar**, solo founder of handl'it AI Consultancy (Philippines, pre-revenue). This handoff is specifically scoped to the **mid·voyage personal portfolio** at `mvallarautomations.cc`.
+You are continuing work for **Mishael Vallar**. This handoff is specifically scoped to the **mid·voyage personal portfolio** at `mvallarautomations.cc`.
 
 Mishael operates on a **night owl schedule (2PM–2AM PHT)**, ADHD-optimized Pomodoro workflows, and a strict free/OSS-only stack. She is the sole developer. Her partner (14+ yrs design exp) handles design direction.
 
@@ -31,7 +31,6 @@ Mishael operates on a **night owl schedule (2PM–2AM PHT)**, ADHD-optimized Pom
 [OK] Windows scripts: ASCII only — use === not ===, use [OK] not checkmark emoji
 [OK] If first fix fails twice — STOP. Nuke and use official scaffold tools.
 [OK] Never pure white (#FFFFFF/#FAFAFA) — warm off-whites only
-[OK] NEVER use turquoise #4ECDC4 on mid·voyage — that belongs to handl'it only
 [OK] Obsidian for session archiving (not Notion)
 [OK] Deployment target: Vercel Singapore region
 [OK] Cloudflare domain: mvallarautomations.cc

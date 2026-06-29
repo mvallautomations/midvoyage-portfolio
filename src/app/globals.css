@@ -2,256 +2,148 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ============================================================
-   mid·voyage — Global Styles
-   Brand: Mishael Vallar personal / mid·voyage
-   NEVER pure white (#FFFFFF/#FAFAFA) — use parchment #EDEAE3
-   Terracotta #C85A3C — labels/eyebrows ONLY
-   Ghost italic: DM Serif Display italic, color: #C4BFB7
-   ============================================================ */
+/* ============================================================================
+   mid·voyage — Canonical Brand Theme (SINGLE SOURCE OF TRUTH)
+   Owner: Mishael Vallar (M.V.) — systems builder & AI consultant
+   Path:  I:\M-AIOS\brand\midvoyage-theme.css
+   Usage: @import this file (or <link>) in EVERY dev tool, project, and content asset.
+          Update branding here once — it propagates everywhere.
 
-/* === CSS CUSTOM PROPERTIES — LIGHT MODE (DEFAULT) === */
+   One brand, two modes:
+     - LIGHT (default)  -> blog / public content (parchment editorial)
+     - DARK  (data-theme="dark") -> dev tools / dashboards / agent UIs
+   RETIRED: the old turquoise dual-brand system (#4ECDC4) — never use.
+   Tagline: "Dispatches from the middle of figuring it out."
+   ============================================================================ */
+
+/* ---- Fonts (free-tier stack; FK Grotesk DNA) ------------------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
+
 :root {
-  /* Backgrounds */
-  --bg-base: #EDEAE3;        /* parchment canvas */
-  --bg-surface: #F5F2EB;     /* cards, panels */
-  --bg-elevated: #FAF8F4;    /* nested cards */
-  --bg-invert: #18171A;      /* near-black */
+  /* === LIGHT MODE (default) — backgrounds never pure white === */
+  --bg-base:     #EDEAE3;   /* parchment canvas */
+  --bg-surface:  #F5F2EB;   /* cards, panels */
+  --bg-elevated: #FAF8F4;   /* nested cards */
+  --bg-invert:   #18171A;   /* code blocks */
 
-  /* Ink / Text */
-  --ink-primary: #18171A;
+  --ink-primary:   #18171A;
   --ink-secondary: #5A5855;
-  --ink-muted: #9B978F;
-  --ink-ghost: #C4BFB7;      /* ghost italic word — signature */
-  --ink-invert: #F5F2EB;
+  --ink-muted:     #9B978F;
+  --ink-ghost:     #C4BFB7;   /* ghost italic word — SIGNATURE */
+  --ink-invert:    #F5F2EB;
 
-  /* Accent */
-  --accent-terra: #C85A3C;        /* terracotta — labels only */
+  --accent-terra:       #C85A3C;   /* terracotta — labels/eyebrows ONLY, never fills */
   --accent-terra-light: #E89880;
-  --accent-terra-dark: #9E3F28;
-  --accent-sage: #6B8A72;
-  --accent-sand: #B8A88A;
+  --accent-terra-dark:  #9E3F28;
+  --accent-sage:        #6B8A72;
+  --accent-sand:        #B8A88A;
 
-  /* Borders */
-  --border-subtle: rgba(24, 23, 26, 0.10);
-  --border-light: rgba(24, 23, 26, 0.18);
-  --border-medium: rgba(24, 23, 26, 0.28);
+  --border-subtle: rgba(24,23,26,0.10);
+  --border-light:  rgba(24,23,26,0.18);
+  --border-medium: rgba(24,23,26,0.28);
 
-  /* Typography */
-  --font-jakarta: "Plus Jakarta Sans";
-  --font-dm-sans: "DM Sans";
-  --font-dm-serif: "DM Serif Display";
-  --font-jetbrains: "JetBrains Mono";
+  /* === Semantic (both modes) === */
+  --success:#10B981; --warning:#F59E0B; --danger:#EF4444; --info:#3B82F6;
 
-  /* Motion */
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --dur-fast: 120ms;
-  --dur-base: 220ms;
-  --dur-slow: 400ms;
+  /* === Typography === */
+  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;  /* weight 800 for brand */
+  --font-body:    'DM Sans', system-ui, sans-serif;
+  --font-serif:   'DM Serif Display', Georgia, serif;          /* ghost word only, italic */
+  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;     /* ALL UI utility text */
 
-  /* Hero typography — fluid */
-  --text-hero: clamp(3rem, 8vw, 5.5rem);
-  --text-subhero: clamp(1.125rem, 2.5vw, 1.375rem);
+  --text-2xs:.75rem; --text-xs:.875rem; --text-sm:.875rem; --text-base:1rem;
+  --text-md:1.125rem; --text-lg:1.375rem; --text-xl:1.75rem; --text-2xl:2.25rem;
+  --text-hero:clamp(3rem,8vw,5.5rem);
+
+  /* === Spacing (4px base) === */
+  --sp-1:.25rem; --sp-2:.5rem; --sp-3:.75rem; --sp-4:1rem; --sp-5:1.25rem;
+  --sp-6:1.5rem; --sp-8:2rem; --sp-10:2.5rem; --sp-12:3rem; --sp-16:4rem; --sp-20:5rem;
+
+  /* === Radius (near-square, editorial) === */
+  --r-sm:3px; --r-md:6px; --r-lg:10px; --r-xl:16px; --r-full:9999px;
+
+  /* === Motion === */
+  --ease-out:cubic-bezier(0.16,1,0.3,1);
+  --dur-fast:120ms; --dur-base:220ms; --dur-slow:400ms;
 }
 
-/* === DARK MODE OVERRIDES === */
+/* === DARK MODE — dev tools / dashboards / agent UIs === */
 [data-theme="dark"] {
-  --bg-base: #18171A;
-  --bg-surface: #201F22;
-  --bg-elevated: #2A292D;
-  --ink-primary: #F0EDE7;
+  --bg-base:       #18171A;
+  --bg-surface:    #201F22;
+  --bg-elevated:   #2A292D;
+  --ink-primary:   #F0EDE7;
   --ink-secondary: #A8A49C;
-  --ink-muted: #6B6760;
-  --ink-ghost: #3D3C3F;
-  --accent-terra: #E07A61;
-  --accent-sage: #8AAF91;
-  --border-subtle: rgba(240, 237, 231, 0.08);
-  --border-light: rgba(240, 237, 231, 0.14);
-  --border-medium: rgba(240, 237, 231, 0.24);
+  --ink-muted:     #6B6760;
+  --ink-ghost:     #3D3C3F;
+  --accent-terra:  #E07A61;   /* warmer terra for dark */
+  --accent-sage:   #8AAF91;
+  --border-subtle: rgba(240,237,231,0.08);
+  --border-light:  rgba(240,237,231,0.14);
+  --border-medium: rgba(240,237,231,0.24);
 }
 
-/* === BASE RESET & BODY === */
-@layer base {
-  *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+/* ---- Base resets ---------------------------------------------------------- */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing:antialiased; }
 
-  html {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    scroll-behavior: smooth;
-  }
-
-  body {
-    background-color: var(--bg-base);
-    color: var(--ink-primary);
-    font-family: var(--font-dm-sans), system-ui, sans-serif;
-    font-size: 1rem;
-    line-height: 1.65;
-    transition: background-color var(--dur-base) var(--ease-out),
-                color var(--dur-base) var(--ease-out);
-  }
-
-  /* Headings use Plus Jakarta Sans 800 */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-jakarta), system-ui, sans-serif;
-    font-weight: 800;
-    line-height: 1.1;
-    color: var(--ink-primary);
-    letter-spacing: -0.02em;
-  }
-
-  /* Mono for all UI utility text (nav, labels, badges, captions) */
-  .label, .eyebrow, .badge, .nav-item, figcaption, time, .mono {
-    font-family: var(--font-jetbrains), monospace;
-    font-size: 0.75rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  a {
-    color: inherit;
-    text-decoration: none;
-  }
-
-  a:focus-visible,
-  button:focus-visible {
-    outline: 2px solid var(--accent-terra);
-    outline-offset: 2px;
-    border-radius: 4px;
-  }
-
-  img, video {
-    max-width: 100%;
-    height: auto;
-  }
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-base);
+  color: var(--ink-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  transition: background-color var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
 }
 
-/* === COMPONENTS === */
-@layer components {
-  /* --- Ghost italic signature word --- */
-  /* ALWAYS applied to one word per headline */
-  .ghost-word {
-    font-family: var(--font-dm-serif), Georgia, serif;
-    font-style: italic;
-    font-weight: 400;    /* NEVER 600+ on ghost word */
-    color: var(--ink-ghost);
-  }
+h1,h2,h3,h4,h5,h6 { font-family: var(--font-display); font-weight:800; line-height:1.15; }
+code, pre, .mono, .label, nav, .badge, .caption { font-family: var(--font-mono); }
 
-  /* --- Eyebrow label (terracotta, mono) --- */
-  .eyebrow {
-    font-family: var(--font-jetbrains), monospace;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--accent-terra);
-  }
-
-  /* --- Section container --- */
-  .mv-container {
-    width: 100%;
-    max-width: 1200px;
-    margin-inline: auto;
-    padding-inline: clamp(1.25rem, 5vw, 4rem);
-  }
-
-  /* --- Card base --- */
-  .mv-card {
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border-light);
-    border-radius: 10px;    /* --r-lg */
-    transition: border-color var(--dur-base) var(--ease-out),
-                transform var(--dur-base) var(--ease-out);
-  }
-
-  .mv-card:hover {
-    border-color: var(--border-medium);
-    transform: translateY(-2px);
-  }
-
-  /* --- Button — ghost outline style (terracotta border never filled) --- */
-  .mv-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-family: var(--font-jetbrains), monospace;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 0.75rem 1.5rem;     /* min 44px touch target */
-    border-radius: 3px;           /* near-square editorial */
-    border: 1px solid var(--border-medium);
-    color: var(--ink-primary);
-    background: transparent;
-    cursor: pointer;
-    transition: border-color var(--dur-fast) var(--ease-out),
-                color var(--dur-fast) var(--ease-out);
-    min-height: 44px;             /* touch target */
-  }
-
-  .mv-btn:hover {
-    border-color: var(--accent-terra);
-    color: var(--accent-terra);
-  }
-
-  /* --- Horizontal rule --- */
-  .mv-rule {
-    border: none;
-    border-top: 1px solid var(--border-subtle);
-    margin-block: 2rem;
-  }
+/* ---- Ghost-italic signature ---------------------------------------------- */
+/* Wrap exactly ONE word per headline in .ghost */
+.ghost {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: bold;            /* MUST be bold */
+  color: var(--ink-ghost);
 }
 
-/* === UTILITY EXTENSIONS === */
-@layer utilities {
-  /* Hero text — fluid responsive */
-  .text-hero {
-    font-size: var(--text-hero);
-    line-height: 1.0;
-    letter-spacing: -0.03em;
-  }
-
-  .text-subhero {
-    font-size: var(--text-subhero);
-    line-height: 1.55;
-  }
-
-  /* Parchment texture (subtle grain) */
-  .parchment-grain::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 100;
-    opacity: 0.025;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-    background-size: 200px;
-  }
-
-  /* Animate fade-up on mount */
-  .fade-up {
-    animation: fadeUp var(--dur-slow) var(--ease-out) both;
-  }
-
-  .fade-up-delay-1 { animation-delay: 80ms; }
-  .fade-up-delay-2 { animation-delay: 160ms; }
-  .fade-up-delay-3 { animation-delay: 240ms; }
-  .fade-up-delay-4 { animation-delay: 320ms; }
-
-  @keyframes fadeUp {
-    from {
-      opacity: 0;
-      transform: translateY(16px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+/* ---- Eyebrow / label (terracotta — text only, never a fill) -------------- */
+.eyebrow, .label {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-terra);
 }
+
+/* ---- Cards & surfaces ----------------------------------------------------- */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-lg);
+  padding: var(--sp-6);
+}
+
+/* ---- Buttons (near-square, 44px min touch target) ------------------------ */
+.btn {
+  font-family: var(--font-mono);
+  min-height: 44px;
+  padding: var(--sp-3) var(--sp-5);
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border-medium);
+  background: var(--bg-elevated);
+  color: var(--ink-primary);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out);
+}
+.btn:hover { border-color: var(--accent-terra); }
+
+/* ============================================================================
+   FORBIDDEN (enforced by review + SessionStart hook):
+   - pure #FFFFFF or #000000 backgrounds
+   - turquoise #4ECDC4 / any retired dual-brand token
+   - terracotta as a button/background fill (labels/eyebrows text only)
+   - more than 2 font families per asset
+   - neon, glow, decorative gradients, heavy drop shadows
+   - non-bold on the ghost italic word (must be bold italic)
+   ============================================================================ */
