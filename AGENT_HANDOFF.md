@@ -2,6 +2,7 @@
 **Project:** midvoyage-portfolio
 **Owner:** Mishael Vallar 
 **Local path:** midvoyage-portfolio
+
 **Target domain:** `mvallarautomations.cc`
 **Deploy target:** Vercel free tier
 **Git user:** `mvallautomations` | `mvallarautomates@gmail.com`
@@ -26,7 +27,7 @@
 
 ### 1. Git Setup
 ```powershell
-cd D:\AI_Dev\WorkspaceOS\Projects\midvoyage-portfolio
+cd ~/m-aios/projects/super-duper-potato
 git init
 git config user.name "mvallautomations"
 git config user.email "mvallarautomates@gmail.com"
@@ -46,7 +47,7 @@ npm install -g vercel
 vercel login
 
 # Deploy from project root
-cd D:\AI_Dev\WorkspaceOS\Projects\midvoyage-portfolio
+cd ~/m-aios/projects/super-duper-potato
 vercel
 
 # Prompts:
@@ -114,4 +115,4 @@ src/
 ## Contacts
 - GitHub: `mvallautomations`
 - Email: `mvallarautomates@gmail.com`
-- Brand: handl'it AI Consultancy (B2B) + mid-voyage (personal)
+- Brand: mid·voyage (Solo Systems Builder & Value Creator)
