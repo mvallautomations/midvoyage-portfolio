@@ -114,18 +114,11 @@ export default function HomePage() {
                 marginBottom: "2rem",
               }}
             >
-              Dispatches{" "}
-              <span style={{ display: "inline-block" }}>
-                {/* Ghost italic word — DM Serif Display italic, never bold */}
-                from the{" "}
-                <span
-                  className="ghost-word"
-                  style={{ fontSize: "inherit" }}
-                >
-                  middle
-                </span>
+              Dispatches from the middle of{" "}
+              <span className="ghost-word" style={{ fontSize: "inherit" }}>
+                figuring
               </span>{" "}
-              of figuring it out.
+              it out.
             </h1>
 
             {/* Subhead */}

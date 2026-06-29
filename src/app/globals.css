@@ -43,10 +43,10 @@
   --success:#10B981; --warning:#F59E0B; --danger:#EF4444; --info:#3B82F6;
 
   /* === Typography === */
-  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;  /* weight 800 for brand */
-  --font-body:    'DM Sans', system-ui, sans-serif;
-  --font-serif:   'DM Serif Display', Georgia, serif;          /* ghost word only, italic */
-  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;     /* ALL UI utility text */
+  --font-display: var(--font-jakarta), 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body:    var(--font-dm-sans), 'DM Sans', system-ui, sans-serif;
+  --font-serif:   var(--font-dm-serif), 'DM Serif Display', Georgia, serif;
+  --font-mono:    var(--font-jetbrains), 'JetBrains Mono', 'Fira Code', monospace;
 
   --text-2xs:.75rem; --text-xs:.875rem; --text-sm:.875rem; --text-base:1rem;
   --text-md:1.125rem; --text-lg:1.375rem; --text-xl:1.75rem; --text-2xl:2.25rem;
@@ -97,10 +97,10 @@ code, pre, .mono, .label, nav, .badge, .caption { font-family: var(--font-mono);
 
 /* ---- Ghost-italic signature ---------------------------------------------- */
 /* Wrap exactly ONE word per headline in .ghost */
-.ghost {
+.ghost, .ghost-word {
   font-family: var(--font-serif);
   font-style: italic;
-  font-weight: bold;            /* MUST be bold */
+  font-weight: 400;             /* DM Serif Display regular italic */
   color: var(--ink-ghost);
 }
 
