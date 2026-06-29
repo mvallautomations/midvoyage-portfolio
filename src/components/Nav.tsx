@@ -110,7 +110,7 @@ export default function Nav() {
                   color:
                     pathname === link.href
                       ? "var(--ink-primary)"
-                      : "var(--ink-secondary)",
+                      : "var(--ink-muted)",
                   transition: "color var(--dur-fast)",
                   textDecoration: "none",
                   borderBottom:
@@ -124,7 +124,7 @@ export default function Nav() {
               </Link>
             ))}
 
-            {/* Segmented theme toggle matching components-nav.html */}
+            {/* Segmented sun/moon toggle matching components-nav.html */}
             <div
               style={{
                 display: "inline-flex",
@@ -139,41 +139,51 @@ export default function Nav() {
             >
               <button
                 onClick={() => setTheme(false)}
-                aria-label="Light theme"
+                aria-label="Light mode"
                 aria-pressed={!isDark}
+                title="Light mode"
                 style={{
                   background: !isDark ? "var(--bg-elevated)" : "none",
                   border: "none",
-                  minHeight: "44px",
-                  padding: "0 0.75rem",
-                  fontFamily: "var(--font-jetbrains)",
-                  fontSize: "0.7rem",
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  color: !isDark ? "var(--ink-primary)" : "var(--ink-secondary)",
+                  width: "34px",
+                  height: "34px",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                   cursor: "pointer",
+                  color: !isDark ? "var(--ink-primary)" : "var(--ink-muted)",
+                  boxShadow: !isDark ? "inset 0 0 0 1px var(--border-medium)" : "none",
                 }}
               >
-                Light
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" style={{ width: "15px", height: "15px" }} aria-hidden="true">
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <path d="M12 2v2"></path><path d="M12 20v2"></path>
+                  <path d="M4.93 4.93l1.41 1.41"></path><path d="M17.66 17.66l1.41 1.41"></path>
+                  <path d="M2 12h2"></path><path d="M20 12h2"></path>
+                  <path d="M4.93 19.07l1.41-1.41"></path><path d="M17.66 6.34l1.41-1.41"></path>
+                </svg>
               </button>
               <button
                 onClick={() => setTheme(true)}
-                aria-label="Dark theme"
+                aria-label="Dark mode"
                 aria-pressed={isDark}
+                title="Dark mode"
                 style={{
                   background: isDark ? "var(--bg-elevated)" : "none",
                   border: "none",
-                  minHeight: "44px",
-                  padding: "0 0.75rem",
-                  fontFamily: "var(--font-jetbrains)",
-                  fontSize: "0.7rem",
-                  letterSpacing: "0.08em",
-                  textTransform: "uppercase",
-                  color: isDark ? "var(--ink-primary)" : "var(--ink-secondary)",
+                  width: "34px",
+                  height: "34px",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                   cursor: "pointer",
+                  color: isDark ? "var(--ink-primary)" : "var(--ink-muted)",
+                  boxShadow: isDark ? "inset 0 0 0 1px var(--border-medium)" : "none",
                 }}
               >
-                Dark
+                <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "15px", height: "15px" }} aria-hidden="true">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
               </button>
             </div>
           </div>

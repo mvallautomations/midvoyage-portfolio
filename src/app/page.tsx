@@ -381,9 +381,9 @@ export default function HomePage() {
                     color: "var(--ink-primary)",
                   }}
                 >
-                  Projects &{" "}
+                  Projects & case{" "}
                   <span className="ghost-word" style={{ fontSize: "inherit" }}>
-                    case studies
+                    studies
                   </span>
                 </h2>
               </div>
