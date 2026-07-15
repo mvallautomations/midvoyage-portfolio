@@ -35,10 +35,10 @@ const allWork: WorkCardProps[] = [
   },
   {
     slug: "ra-bautista",
-    eyebrow: "Legal · Digital Presence",
-    title: "R.A. Bautista Law Office",
+    eyebrow: "Design · Digital Presence",
+    title: "R.A. Bautista Portfolio",
     description:
-      "Digital presence strategy and web build for a Philippine law office. The brief: look credible online without spending money. Astro + content architecture.",
+      "Digital presence strategy and web build for a Senior Graphic Designer and brand growth strategist. The brief: look credible online without spending money. Astro + content architecture.",
     tags: ["Astro", "Web Design", "Content Strategy", "SEO"],
     status: "concept",
     year: "2025",

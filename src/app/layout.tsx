@@ -81,6 +81,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const themeScript = `
+    (function() {
+      try {
+        var storedTheme = localStorage.getItem('mv-theme');
+        if (storedTheme) {
+          document.documentElement.setAttribute('data-theme', storedTheme);
+        }
+      } catch (e) {}
+    })();
+  `;
+
   return (
     <html
       lang="en"
@@ -93,6 +104,9 @@ export default function RootLayout({
         ${jetbrainsMono.variable}
       `}
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body className="parchment-grain">
         {children}
       </body>

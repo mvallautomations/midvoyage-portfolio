@@ -14,6 +14,7 @@
 :root {
   /* Backgrounds */
   --bg-base: #EDEAE3;        /* parchment canvas */
+  --bg-base-glass: rgba(237, 234, 227, 0.85); /* parchment glass */
   --bg-surface: #F5F2EB;     /* cards, panels */
   --bg-elevated: #FAF8F4;    /* nested cards */
   --bg-invert: #18171A;      /* near-black */
@@ -57,6 +58,7 @@
 /* === DARK MODE OVERRIDES === */
 [data-theme="dark"] {
   --bg-base: #18171A;
+  --bg-base-glass: rgba(24, 23, 26, 0.85);
   --bg-surface: #201F22;
   --bg-elevated: #2A292D;
   --ink-primary: #F0EDE7;
@@ -165,12 +167,14 @@
     border: 1px solid var(--border-light);
     border-radius: 10px;    /* --r-lg */
     transition: border-color var(--dur-base) var(--ease-out),
-                transform var(--dur-base) var(--ease-out);
+                transform var(--dur-base) var(--ease-out),
+                box-shadow var(--dur-base) var(--ease-out);
   }
 
   .mv-card:hover {
     border-color: var(--border-medium);
-    transform: translateY(-2px);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -8px var(--border-subtle);
   }
 
   /* --- Button — ghost outline style (terracotta border never filled) --- */

@@ -31,11 +31,11 @@ const featuredWork: WorkCardProps[] = [
     status: "in-progress",
     year: "2025",
     showcaseLinks: [
-      { label: "Live Demo (soon)" },
-      { label: "Source Repo (soon)" },
-      { label: "Deployment (soon)" },
+      { label: "Live Demo", href: "https://kuya-koks-site.vercel.app" },
+      { label: "Source Repo", href: "https://github.com/mvallautomations/kuya-koks-site" },
       { label: "Case Study", href: "/work/kuya-koks" },
     ],
+    thumbnail: "/thumbnails/kuyakoks.png",
   },
   {
     slug: "ra-bautista",
@@ -47,11 +47,11 @@ const featuredWork: WorkCardProps[] = [
     status: "concept",
     year: "2025",
     showcaseLinks: [
-      { label: "Live Demo (soon)" },
-      { label: "Source Repo (soon)" },
-      { label: "Deployment (soon)" },
+      { label: "Live Demo", href: "https://ra-portfolio-site.vercel.app" },
+      { label: "Source Repo", href: "https://github.com/mvallautomations/ra-portfolio-site" },
       { label: "Case Study", href: "/work/ra-bautista" },
     ],
+    thumbnail: "/thumbnails/rabautista.png",
   },
   {
     slug: "graceland-farm",

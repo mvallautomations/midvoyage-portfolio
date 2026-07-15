@@ -3,6 +3,10 @@ import { notFound } from "next/navigation";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import fs from "fs";
+import path from "path";
+import { MDXRemote } from "next-mdx-remote/rsc";
+import ClientThemeOverride from "@/components/ClientThemeOverride";
 
 /* ============================================================
    mid·voyage — Case Study Placeholder (/work/[slug])
@@ -33,10 +37,10 @@ const projects: Record<
     tags: ["Next.js 15", "Tailwind CSS", "Vercel"],
   },
   "ra-bautista": {
-    title: "R.A. Bautista Law Office",
-    eyebrow: "Legal · Digital Presence",
+    title: "R.A. Bautista Portfolio",
+    eyebrow: "Design · Digital Presence",
     description:
-      "Digital presence strategy and web build for a Philippine law office.",
+      "Digital presence strategy and web build for a Senior Graphic Designer and brand growth strategist.",
     status: "Concept",
     year: "2025",
     tags: ["Astro", "Web Design", "Content Strategy"],
@@ -105,8 +109,21 @@ export default async function CaseStudyPage({
   // Return 404 for unknown slugs
   if (!project) notFound();
 
+  // Read MDX content
+  const filePath = path.join(process.cwd(), "src", "content", "work", `${slug}.mdx`);
+  let content = "Case study content coming soon.";
+  try {
+    content = fs.readFileSync(filePath, "utf8");
+  } catch (e) {
+    console.error(`Could not find MDX for slug: ${slug}`);
+  }
+
+  // Return 404 for unknown slugs
+  if (!project) notFound();
+
   return (
     <>
+      {(slug === "ra-bautista" || slug === "kuya-koks") && <ClientThemeOverride theme={slug} />}
       <Nav />
 
       <main>
@@ -277,8 +294,7 @@ export default async function CaseStudyPage({
           <hr className="mv-rule" />
         </div>
 
-        {/* === PLACEHOLDER CONTENT === */}
-        {/* Replace this section with MDX import when case study is written */}
+        {/* === CASE STUDY CONTENT === */}
         <section
           style={{
             paddingBlock: "clamp(3rem, 6vw, 5rem)",
@@ -288,50 +304,26 @@ export default async function CaseStudyPage({
             className="mv-container"
             style={{ maxWidth: "72ch" }}
           >
-            {/* Placeholder state */}
-            <div
+            <div 
+              className="prose prose-invert max-w-none" 
               style={{
-                backgroundColor: "var(--bg-surface)",
-                border: "1px dashed var(--border-light)",
-                borderRadius: "10px",
-                padding: "3rem",
-                textAlign: "center",
+                 fontFamily: "var(--font-dm-sans)",
+                 color: "var(--ink-secondary)",
+                 lineHeight: 1.65,
               }}
             >
-              <span
-                style={{
-                  display: "inline-block",
-                  width: "8px",
-                  height: "8px",
-                  borderRadius: "50%",
-                  backgroundColor: "var(--accent-terra)",
-                  marginBottom: "1.5rem",
-                }}
-              />
-              <p
-                style={{
-                  fontFamily: "var(--font-jakarta)",
-                  fontWeight: 800,
-                  fontSize: "1.25rem",
-                  color: "var(--ink-primary)",
-                  marginBottom: "0.75rem",
-                }}
-              >
-                Case study in progress.
-              </p>
-              <p
-                style={{
-                  fontFamily: "var(--font-dm-sans)",
-                  fontSize: "0.9375rem",
-                  color: "var(--ink-secondary)",
-                  lineHeight: 1.65,
-                  maxWidth: "40ch",
-                  margin: "0 auto 1.5rem",
-                }}
-              >
-                {project.description} Full write-up coming soon.
-              </p>
-              <Link href="/work" className="mv-btn">
+              <MDXRemote source={content} />
+            </div>
+
+            <div style={{ marginTop: "4rem", textAlign: "center" }}>
+              <Link href="/work" className="mv-btn" style={{ 
+                fontFamily: "var(--font-jetbrains)", 
+                fontSize: "0.8rem", 
+                textTransform: "uppercase", 
+                padding: "0.75rem 1.5rem", 
+                border: "1px solid var(--border-light)", 
+                borderRadius: "3px" 
+              }}>
                 ← Back to all work
               </Link>
             </div>

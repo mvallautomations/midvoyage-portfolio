@@ -18,6 +18,7 @@ export interface WorkCardProps {
   status?: "live" | "in-progress" | "concept"; // Project status
   year?: string;            // e.g. "2024"
   featured?: boolean;       // Larger card treatment
+  thumbnail?: string;       // Image URL for thumbnail
   showcaseLinks?: {
     label: string;
     href?: string;
@@ -33,6 +34,7 @@ export default function WorkCard({
   status = "in-progress",
   year,
   featured = false,
+  thumbnail,
   showcaseLinks = [],
 }: WorkCardProps) {
   // Status label text map
@@ -143,6 +145,18 @@ export default function WorkCard({
         >
           {description}
         </p>
+
+        {/* Thumbnail */}
+        {thumbnail && (
+          <div style={{ marginTop: "0.5rem", marginBottom: "0.5rem", borderRadius: "6px", overflow: "hidden", border: "1px solid var(--border-light)" }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img 
+              src={thumbnail} 
+              alt={`${title} preview`} 
+              style={{ width: "100%", height: "auto", display: "block" }} 
+            />
+          </div>
+        )}
 
         {/* Tags */}
         {tags.length > 0 && (

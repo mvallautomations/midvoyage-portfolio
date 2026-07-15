@@ -45,7 +45,9 @@ export default function Nav() {
   return (
     <header
       style={{
-        backgroundColor: "var(--bg-base)",
+        backgroundColor: "var(--bg-base-glass)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
         borderBottom: "1px solid var(--border-subtle)",
         position: "sticky",
         top: 0,
