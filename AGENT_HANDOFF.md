@@ -27,7 +27,7 @@
 
 ### 1. Git Setup
 ```powershell
-cd ~/m-aios/projects/super-duper-potato
+cd ~/m-2nd-brain/handlit-os/super-duper-potato
 git init
 git config user.name "mvallautomations"
 git config user.email "mvallarautomates@gmail.com"
@@ -47,7 +47,7 @@ npm install -g vercel
 vercel login
 
 # Deploy from project root
-cd ~/m-aios/projects/super-duper-potato
+cd ~/m-2nd-brain/handlit-os/super-duper-potato
 vercel
 
 # Prompts:

@@ -4,8 +4,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-Personal portfolio for Mishael Vallar (handl'it AI Consultancy). Brand: **mid.voyage**.
+Personal portfolio for Mishael Vallar. Brand: **mid·voyage** (this file lives in the `handlit-os/`
+folder for path stability only — that folder name is a legacy holdover, not a brand reference).
+handl'it is a separate, ACTIVE sibling business brand (not retired — see root `CLAUDE.md`
+Section 2 and `brands/handlit/handlit.md`); it has no relationship to this site or this folder.
+See `handlit-os/CLAUDE.md` for the folder-level note and root `CLAUDE.md` for the full MOC.
 Deploy target: Vercel free tier at `mvallarautomations.cc`.
+Workspace root: `/home/vall/m-2nd-brain` (WSL2) / `\\wsl.localhost\Ubuntu\home\vall\m-2nd-brain` (UNC).
+This project's real path: `/home/vall/m-2nd-brain/handlit-os/super-duper-potato`.
 
 ## Commands
 
