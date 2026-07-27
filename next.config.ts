@@ -1,14 +1,16 @@
 import type { NextConfig } from "next";
 
 /* ============================================================
-   mid·voyage — Next.js 15 Config
-   - Images: Vercel optimized
+   mid·voyage — Next.js Config
+   - output: "export" — static site for Cloudflare Pages (handlit.app)
+   - images unoptimized: required for static export (no image server)
    - No turbopack (per scaffold rules)
    ============================================================ */
 
 const nextConfig: NextConfig = {
-  // Optimize images from external sources if needed later
+  output: "export",
   images: {
+    unoptimized: true,
     remotePatterns: [],
   },
   // Trailing slash — consistent URLs
