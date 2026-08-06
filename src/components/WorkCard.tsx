@@ -10,7 +10,7 @@ import Link from "next/link";
    ============================================================ */
 
 export interface WorkCardProps {
-  slug: string;             // URL slug: /work/kuya-koks
+  slug: string;             // URL slug: /work/speed-to-lead
   eyebrow: string;          // Category label (terracotta mono)
   title: string;            // Project name
   description: string;      // 1–2 sentence summary

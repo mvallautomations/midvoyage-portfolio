@@ -19,52 +19,53 @@ export const metadata: Metadata = {
     "Solo founder. AI systems builder. Dispatches from the middle of figuring it out.",
 };
 
-// === WORK DATA — 3 featured projects ===
+// === WORK DATA — homepage featured (3) ===
+// Rewritten 2026-08-06 (M's call): the prior three entries — kuya-koks,
+// ra-bautista, graceland-farm — were unpaid engagements not to be presented as
+// client work, and ra-bautista was never permission-cleared. Do not re-add them.
+// Every entry below is own-operations work with a verifiable public link.
 const featuredWork: WorkCardProps[] = [
   {
-    slug: "kuya-koks",
-    eyebrow: "Restaurant · Web",
-    title: "Kuya Kok's Griddle & Grill",
+    slug: "speed-to-lead",
+    eyebrow: "AI Systems · Lead Qualification",
+    title: "Speed-to-Lead — inbound qualifier",
     description:
-      "Full website build for a Filipino restaurant in the Philippines. Next.js 15, mobile-first, deployed to a custom domain. Family business project.",
-    tags: ["Next.js 15", "Tailwind CSS", "Vercel"],
-    status: "in-progress",
-    year: "2025",
+      "Nine-node pipeline: form intake, LLM scoring against a rubric, hot/nurture routing, a personalised reply, an owner alert and a CRM write. 7.4 seconds end to end, verified across four logged executions. Ordering is enforced structurally — the CRM write is a graph dependency of the send steps, so a failed email can never lose the lead.",
+    tags: ["n8n", "Claude API", "Telegram", "SMTP", "SQLite"],
+    status: "live",
+    year: "2026",
+    featured: true,
     showcaseLinks: [
-      { label: "Live Demo (soon)" },
-      { label: "Source Repo (soon)" },
-      { label: "Deployment (soon)" },
-      { label: "Case Study", href: "/work/kuya-koks" },
+      { label: "Live at handlit.app", href: "https://handlit.app" },
+      { label: "Case Study", href: "/work/speed-to-lead" },
     ],
   },
   {
-    slug: "ra-bautista",
-    eyebrow: "Creative · Positioning Refresh",
-    title: "R.A. Studio — Senior Brand Partner",
+    slug: "review-reply-agent",
+    eyebrow: "AI Agents · Reputation",
+    title: "Review & Reply Agent",
     description:
-      "Portfolio audit and value-based positioning refresh for a 14+ yr senior creative. Pivoted from hourly lowball rates to selling bought-back executive time.",
-    tags: ["React / Vite", "Positioning Refresh", "Value-Based Retainers"],
+      "Reads a customer review, escalates anything serious to the owner and drafts the rest for one-tap approval. It never posts on its own. Verified across three live executions averaging 3.48s — a 5-star queued, a food-poisoning-plus-legal-threat escalated, a child-illness complaint escalated.",
+    tags: ["n8n", "Claude API", "Escalation Rules"],
     status: "live",
     year: "2026",
     showcaseLinks: [
-      { label: "Source Repo", href: "https://github.com/mvallautomations/ra-portfolio-site" },
-      { label: "Case Study", href: "/work/ra-bautista" },
+      { label: "Source Repo", href: "https://github.com/mvallautomations/review-reply-agent" },
+      { label: "Case Study", href: "/work/review-reply-agent" },
     ],
   },
   {
-    slug: "graceland-farm",
-    eyebrow: "Agriculture · Strategy",
-    title: "Graceland Farm",
+    slug: "inbox-triage-agent",
+    eyebrow: "AI Agents · Operations",
+    title: "Inbox Triage Agent",
     description:
-      "Competitive intelligence and farm positioning strategy for a family farm in Indang, Cavite. Seven-tab Excel report. Infrastructure planning.",
-    tags: ["Research", "Excel", "Strategy"],
-    status: "in-progress",
-    year: "2025",
+      "Extracts quote details from an inbound email without inventing numbers, and escalates anything touching money or lawyers to a human. 3.19s per run against live executions. The constraint that matters is what it refuses to do unsupervised.",
+    tags: ["n8n", "Claude API", "Structured Extraction"],
+    status: "live",
+    year: "2026",
     showcaseLinks: [
-      { label: "Live Demo (soon)" },
-      { label: "Source Repo (soon)" },
-      { label: "Deployment (soon)" },
-      { label: "Case Study", href: "/work/graceland-farm" },
+      { label: "Source Repo", href: "https://github.com/mvallautomations/inbox-triage-agent" },
+      { label: "Case Study", href: "/work/inbox-triage-agent" },
     ],
   },
 ];

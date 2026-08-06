@@ -4,6 +4,10 @@ import { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
+// Rewritten 2026-08-06 (M's call): kuya-koks, ra-bautista and graceland-farm
+// were unpaid engagements not to be presented as client work; ra-bautista was
+// never permission-cleared. Do not re-add them. Every entry is own-operations
+// work with a verifiable public link.
 const projects: Record<
   string,
   {
@@ -15,32 +19,50 @@ const projects: Record<
     tags: string[];
   }
 > = {
-  "kuya-koks": {
-    title: "Kuya Kok's Brand Audit First. Business Audit Ongoing.",
-    eyebrow: "Restaurant · Systems Architecture & Brand Audit",
+  "speed-to-lead": {
+    title: "Speed-to-Lead — inbound qualifier",
+    eyebrow: "AI Systems · Lead Qualification",
     description:
-      "Comprehensive brand audit and operational systems overhaul for a Filipino casual dining restaurant.",
-    status: "Active Engagement",
-    year: "2026",
-    tags: ["Brand Audit", "Systems Architecture", "n8n Automations", "AI Agents"],
-  },
-  "ra-bautista": {
-    title: "R.A. Studio — Senior Brand Partner",
-    eyebrow: "Creative · Positioning Refresh",
-    description:
-      "Portfolio audit and value-based positioning refresh for a 14+ yr senior creative. Pivoted from hourly lowball rates to selling bought-back executive time.",
+      "A nine-node pipeline that takes an inbound enquiry from form submission to scored, routed, replied-to and logged in 7.4 seconds — verified across four logged executions, not a demo run. Ordering is enforced structurally rather than by convention: the CRM write is a graph dependency of the send steps, so a failed email can never lose the lead. Node references are explicit rather than positional, so rewiring cannot silently change behaviour. Hardened against malformed submissions after a blank POST was found to break the send stage.",
     status: "Live",
     year: "2026",
-    tags: ["React / Vite", "Positioning Refresh", "Value-Based Retainers"],
+    tags: ["n8n", "Claude API", "Telegram", "SMTP", "SQLite"],
   },
-  "graceland-farm": {
-    title: "Graceland Farm, Indang Cavite",
-    eyebrow: "Agriculture · Research",
+  "review-reply-agent": {
+    title: "Review & Reply Agent",
+    eyebrow: "AI Agents · Reputation",
     description:
-      "Competitive intelligence and farm positioning strategy. Seven-tab Excel workbook.",
-    status: "In Progress",
-    year: "2025",
-    tags: ["Excel", "Research", "Strategy"],
+      "Reads a customer review, escalates anything serious to the owner, and drafts the rest for one-tap approval. It never posts on its own — that constraint is the product, not a limitation. Verified across three live executions averaging 3.48 seconds: a five-star queued for approval, a two-star combining food poisoning with a legal threat escalated, a one-star about a child's illness escalated.",
+    status: "Live",
+    year: "2026",
+    tags: ["n8n", "Claude API", "Escalation Rules"],
+  },
+  "inbox-triage-agent": {
+    title: "Inbox Triage Agent",
+    eyebrow: "AI Agents · Operations",
+    description:
+      "Extracts quote details from an inbound email without inventing numbers, and escalates anything touching money or lawyers to a human. 3.19 seconds per run against live executions. What it refuses to do unsupervised is the part that makes it safe to run unsupervised.",
+    status: "Live",
+    year: "2026",
+    tags: ["n8n", "Claude API", "Structured Extraction"],
+  },
+  "content-repurposer-agent": {
+    title: "Content Repurposer Agent",
+    eyebrow: "AI Agents · Content",
+    description:
+      "Turns one piece of long-form work into platform-native posts, and gates its own output against brand-voice rules enforced in code rather than asked for in a prompt. If a draft breaks a rule, it does not ship. Prompts drift; a linter does not.",
+    status: "Live",
+    year: "2026",
+    tags: ["n8n", "Claude API", "Brand-Voice Linting"],
+  },
+  "handlit-agent-architect": {
+    title: "handlit Agent Architect",
+    eyebrow: "AI Agents · Browser",
+    description:
+      "A Chrome side-panel agent that studies a business's website and designs the custom chat agent it actually needs. Bring your own key — it runs on Ollama, OpenRouter, or any OpenAI-compatible endpoint, so nothing is locked to a single vendor and nothing is billed per seat.",
+    status: "Live",
+    year: "2026",
+    tags: ["Chrome Extension", "BYOK", "Ollama", "OpenRouter"],
   },
 };
 
@@ -48,18 +70,22 @@ const projectShowcaseLinks: Record<
   string,
   { label: string; href?: string }[]
 > = {
-  "kuya-koks": [
-    { label: "Client Roadmap", href: "/blog" },
-    { label: "Systems Architecture", href: "/about" },
+  "speed-to-lead": [{ label: "Live at handlit.app", href: "https://handlit.app" }],
+  "review-reply-agent": [
+    { label: "Source Repo", href: "https://github.com/mvallautomations/review-reply-agent" },
   ],
-  "ra-bautista": [
-    { label: "Source Repo", href: "https://github.com/mvallautomations/ra-portfolio-site" },
+  "inbox-triage-agent": [
+    { label: "Source Repo", href: "https://github.com/mvallautomations/inbox-triage-agent" },
   ],
-  "graceland-farm": [
-    { label: "Live Demo (soon)" },
-    { label: "Source Repo (soon)" },
+  "content-repurposer-agent": [
+    { label: "Source Repo", href: "https://github.com/mvallautomations/content-repurposer-agent" },
+  ],
+  "handlit-agent-architect": [
+    { label: "Source Repo", href: "https://github.com/mvallautomations/handlit-agent-architect" },
   ],
 };
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return Object.keys(projects).map((slug) => ({ slug }));
@@ -256,149 +282,6 @@ export default async function CaseStudyPage({
           }}
         >
           <div className="mv-container" style={{ maxWidth: "72ch" }}>
-            {slug === "kuya-koks" ? (
-              <article style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
-                <div style={{ padding: "2rem", backgroundColor: "var(--bg-surface)", borderRadius: "6px", borderLeft: "4px solid var(--accent-terra)" }}>
-                  <p style={{ fontFamily: "var(--font-dm-serif)", fontStyle: "italic", fontWeight: 700, fontSize: "1.25rem", color: "var(--ink-primary)", marginBottom: "0.5rem" }}>
-                    "Dispatches from the middle of figuring it out."
-                  </p>
-                  <p style={{ fontFamily: "var(--font-jetbrains)", fontSize: "0.75rem", color: "var(--ink-secondary)", textTransform: "uppercase", letterSpacing: "0.08em" }}>
-                    Mishael Vallar — Quiet Observer & Systems Cartographer
-                  </p>
-                </div>
-
-                <div>
-                  <h2 style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.75rem", fontWeight: 800, marginBottom: "1rem", color: "var(--ink-primary)" }}>
-                    1. The Audit Foundation
-                  </h2>
-                  <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", lineHeight: 1.7, color: "var(--ink-primary)", marginBottom: "1rem" }}>
-                    Kuya Kok's Griddle and Grill represents a classic staple of Filipino casual dining—built around high-energy neighborhood service, family gatherings, and authentic griddle specialties. However, like many rapidly growing SMB restaurants in the Philippines, their operational friction grew in lockstep with customer demand.
-                  </p>
-                  <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", lineHeight: 1.7, color: "var(--ink-secondary)" }}>
-                    Rather than immediately prescribing software solutions or complex automation tools, our engagement initiated with a surgical **Brand Audit First** approach. Before automating operational flows, a business must establish unwavering clarity in its brand identity, customer touchpoints, and value proposition.
-                  </p>
-                </div>
-
-                <div>
-                  <h2 style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.75rem", fontWeight: 800, marginBottom: "1rem", color: "var(--ink-primary)" }}>
-                    2. Diagnosing Operational Friction
-                  </h2>
-                  <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", lineHeight: 1.7, color: "var(--ink-primary)", marginBottom: "1.5rem" }}>
-                    During the ongoing discovery and diagnostic mapping, several core structural challenges emerged that required immediate alignment:
-                  </p>
-                  <ul style={{ display: "flex", flexDirection: "column", gap: "1rem", paddingLeft: "1.25rem", fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", color: "var(--ink-primary)", lineHeight: 1.6 }}>
-                    <li><strong>Order Intake & Flow:</strong> Reliance on manual order sheets creating communication bottlenecks between front-of-house staff and the kitchen griddle stations.</li>
-                    <li><strong>Inventory & Supply Tracking:</strong> Stock levels for critical perishable ingredients tracked informally through memory and paper checklists.</li>
-                    <li><strong>Compliance & HR Records:</strong> Informal management of mandatory statutory reporting (BIR receipts, SSS, PhilHealth contributions) and staff scheduling.</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h2 style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.75rem", fontWeight: 800, marginBottom: "1rem", color: "var(--ink-primary)" }}>
-                    3. The Roadmap: From Tier 1 Automation to Tier 2 AI Agents
-                  </h2>
-                  <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", lineHeight: 1.7, color: "var(--ink-primary)", marginBottom: "1.5rem" }}>
-                    To ensure sustainable execution without overwhelming daily restaurant operations, the transformation follows a phased architectural progression:
-                  </p>
-                  
-                  <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
-                    <div style={{ padding: "1.5rem", backgroundColor: "var(--bg-elevated)", borderRadius: "6px", border: "1px solid var(--border-light)" }}>
-                      <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: "0.7rem", color: "var(--accent-terra)", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 500 }}>
-                        Phase 1 — Brand Audit & Digital Presence (Active)
-                      </span>
-                      <h3 style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.25rem", fontWeight: 700, margin: "0.5rem 0", color: "var(--ink-primary)" }}>
-                        Standardizing Identity & Touchpoints
-                      </h3>
-                      <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "0.95rem", color: "var(--ink-secondary)", lineHeight: 1.6 }}>
-                        Establishing a cohesive digital presence, responsive web interface, and clear menu architecture mapped to customer ordering behaviors.
-                      </p>
-                    </div>
-
-                    <div style={{ padding: "1.5rem", backgroundColor: "var(--bg-elevated)", borderRadius: "6px", border: "1px solid var(--border-light)" }}>
-                      <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: "0.7rem", color: "var(--accent-terra)", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 500 }}>
-                        Phase 2 — Tier 1 Automations (Pending)
-                      </span>
-                      <h3 style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.25rem", fontWeight: 700, margin: "0.5rem 0", color: "var(--ink-primary)" }}>
-                        n8n Operational Workflows
-                      </h3>
-                      <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "0.95rem", color: "var(--ink-secondary)", lineHeight: 1.6 }}>
-                        Deploying automated inventory depletion triggers, digital shift scheduling alerts, and standardized payroll calculation pipelines.
-                      </p>
-                    </div>
-
-                    <div style={{ padding: "1.5rem", backgroundColor: "var(--bg-elevated)", borderRadius: "6px", border: "1px solid var(--border-light)" }}>
-                      <span style={{ fontFamily: "var(--font-jetbrains)", fontSize: "0.7rem", color: "var(--accent-terra)", textTransform: "uppercase", letterSpacing: "0.08em", fontWeight: 500 }}>
-                        Phase 3 — Tier 2 AI Agents (Planned)
-                      </span>
-                      <h3 style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.25rem", fontWeight: 700, margin: "0.5rem 0", color: "var(--ink-primary)" }}>
-                        Intelligent Restaurant Assistants
-                      </h3>
-                      <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "0.95rem", color: "var(--ink-secondary)", lineHeight: 1.6 }}>
-                        Integrating conversational AI agents to handle reservations, customer inquiries, and predictive supply chain restocking based on historical sales volume.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div style={{ paddingTop: "2rem", borderTop: "1px solid var(--border-subtle)" }}>
-                  <Link href="/work" style={{ fontFamily: "var(--font-jetbrains)", fontSize: "0.8rem", fontWeight: 500, color: "var(--ink-primary)", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.08em" }}>
-                    ← Back to all work
-                  </Link>
-                </div>
-              </article>
-            ) : slug === "ra-bautista" ? (
-              <article style={{ display: "flex", flexDirection: "column", gap: "2.5rem" }}>
-                <div style={{ padding: "2rem", backgroundColor: "var(--bg-surface)", borderRadius: "6px", borderLeft: "4px solid var(--accent-terra)" }}>
-                  <p style={{ fontFamily: "var(--font-dm-serif)", fontStyle: "italic", fontWeight: 700, fontSize: "1.25rem", color: "var(--ink-primary)", marginBottom: "0.5rem" }}>
-                    "Repositioning creative mastery from hourly labor to executive leverage."
-                  </p>
-                  <p style={{ fontFamily: "var(--font-jetbrains)", fontSize: "0.75rem", color: "var(--ink-secondary)", textTransform: "uppercase", letterSpacing: "0.08em" }}>
-                    Case Study · Freelance Positioning & Brand Architecture Audit
-                  </p>
-                </div>
-
-                <div>
-                  <h2 style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.75rem", fontWeight: 800, marginBottom: "1rem", color: "var(--ink-primary)" }}>
-                    1. The Hourly Freelancer Trap
-                  </h2>
-                  <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", lineHeight: 1.7, color: "var(--ink-primary)", marginBottom: "1rem" }}>
-                    Despite possessing 14+ years of tier-1 graphic design and visual storytelling mastery, the client was trapped in a common professional bottleneck: competing on hourly rates, enduring scope creep, and fielding lowball negotiations from transactional clients.
-                  </p>
-                  <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", lineHeight: 1.7, color: "var(--ink-secondary)" }}>
-                    When senior creatives position themselves as generalist executioners, buyers commoditize their time. To command high-value retainers, the entire portfolio architecture needed to shift from showcasing individual aesthetic deliverables to demonstrating compounding business leverage.
-                  </p>
-                </div>
-
-                <div>
-                  <h2 style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.75rem", fontWeight: 800, marginBottom: "1rem", color: "var(--ink-primary)" }}>
-                    2. The Audit & Positioning Refresh
-                  </h2>
-                  <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", lineHeight: 1.7, color: "var(--ink-primary)", marginBottom: "1.5rem" }}>
-                    We conducted a surgical portfolio overhaul focused on shifting the narrative to attracting mature founders willing to pay to buy back their executive time:
-                  </p>
-                  <ul style={{ display: "flex", flexDirection: "column", gap: "1rem", paddingLeft: "1.25rem", fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", color: "var(--ink-primary)", lineHeight: 1.6 }}>
-                    <li><strong>Anonymized Executive Branding:</strong> Rebranded the portfolio entity to **R.A. Studio**, establishing an authoritative studio presence that commands peer-level respect rather than subordinate freelancer dynamics.</li>
-                    <li><strong>Selling Bought-Back Time:</strong> Framed her comprehensive design systems not as static artwork, but as autonomous brand engines that allow leadership teams to deploy market assets at 10x speed without operational friction.</li>
-                    <li><strong>High-Contrast Premium UI:</strong> Rebuilt the web architecture using React, Vite, and Tailwind with dark glassmorphic tokens and Geist typography—signaling non-negotiable premium standards.</li>
-                  </ul>
-                </div>
-
-                <div>
-                  <h2 style={{ fontFamily: "var(--font-jakarta)", fontSize: "1.75rem", fontWeight: 800, marginBottom: "1rem", color: "var(--ink-primary)" }}>
-                    3. Strategic Impact
-                  </h2>
-                  <p style={{ fontFamily: "var(--font-dm-sans)", fontSize: "1.05rem", lineHeight: 1.7, color: "var(--ink-primary)", marginBottom: "1.5rem" }}>
-                    By structuring her offerings around high-ROI brand retainers and eliminating hourly rate cards, the repositioned portfolio immediately screens out lowball buyers and attracts established clients who value autonomy, speed, and proven mastery.
-                  </p>
-                </div>
-
-                <div style={{ paddingTop: "2rem", borderTop: "1px solid var(--border-subtle)" }}>
-                  <Link href="/work" style={{ fontFamily: "var(--font-jetbrains)", fontSize: "0.8rem", fontWeight: 500, color: "var(--ink-primary)", textDecoration: "none", textTransform: "uppercase", letterSpacing: "0.08em" }}>
-                    ← Back to all work
-                  </Link>
-                </div>
-              </article>
-            ) : (
               <div
                 style={{
                   backgroundColor: "var(--bg-surface)",
@@ -445,7 +328,6 @@ export default async function CaseStudyPage({
                   ← Back to all work
                 </Link>
               </div>
-            )}
           </div>
         </section>
       </main>

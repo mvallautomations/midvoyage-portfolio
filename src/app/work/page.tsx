@@ -14,53 +14,81 @@ export const metadata: Metadata = {
     "AI systems, web builds, and strategy work by Mishael Vallar. Solo founder, Philippines.",
 };
 
-// === ALL WORK — expand as projects grow ===
+// === ALL WORK ===
+// Rewritten 2026-08-06 (M's call): the prior three entries — kuya-koks,
+// ra-bautista, graceland-farm — were unpaid engagements not to be presented as
+// client work, and ra-bautista was never permission-cleared. Do not re-add them.
+// Every entry below is own-operations work with a verifiable public link.
 const allWork: WorkCardProps[] = [
   {
-    slug: "kuya-koks",
-    eyebrow: "Restaurant · Web",
-    title: "Kuya Kok's Griddle & Grill",
+    slug: "speed-to-lead",
+    eyebrow: "AI Systems · Lead Qualification",
+    title: "Speed-to-Lead — inbound qualifier",
     description:
-      "Full website build for a Filipino restaurant. Next.js 15, mobile-first design, deployed on a custom domain. Sibling project — real brief, real constraints, zero budget.",
-    tags: ["Next.js 15", "Tailwind CSS", "Vercel", "HTML/CSS"],
-    status: "in-progress",
-    year: "2025",
+      "Nine-node pipeline: form intake, LLM scoring against a rubric, hot/nurture routing, a personalised reply, an owner alert and a CRM write. 7.4 seconds end to end, verified across four logged executions. Ordering is enforced structurally — the CRM write is a graph dependency of the send steps, so a failed email can never lose the lead.",
+    tags: ["n8n", "Claude API", "Telegram", "SMTP", "SQLite"],
+    status: "live",
+    year: "2026",
     featured: true,
     showcaseLinks: [
-      { label: "Live Demo (soon)" },
-      { label: "Source Repo (soon)" },
-      { label: "Deployment (soon)" },
-      { label: "Case Study", href: "/work/kuya-koks" },
+      { label: "Live at handlit.app", href: "https://handlit.app" },
+      { label: "Case Study", href: "/work/speed-to-lead" },
     ],
   },
   {
-    slug: "ra-bautista",
-    eyebrow: "Creative · Positioning Refresh",
-    title: "R.A. Studio — Senior Brand Partner",
+    slug: "review-reply-agent",
+    eyebrow: "AI Agents · Reputation",
+    title: "Review & Reply Agent",
     description:
-      "Portfolio audit and value-based positioning refresh for a 14+ yr senior creative. Pivoted from hourly lowball rates to selling bought-back executive time.",
-    tags: ["React / Vite", "Positioning Refresh", "Value-Based Retainers"],
+      "Reads a customer review, escalates anything serious to the owner and drafts the rest for one-tap approval. It never posts on its own. Verified across three live executions averaging 3.48s — a 5-star queued, a food-poisoning-plus-legal-threat escalated, a child-illness complaint escalated.",
+    tags: ["n8n", "Claude API", "Escalation Rules"],
     status: "live",
     year: "2026",
     showcaseLinks: [
-      { label: "Source Repo", href: "https://github.com/mvallautomations/ra-portfolio-site" },
-      { label: "Case Study", href: "/work/ra-bautista" },
+      { label: "Source Repo", href: "https://github.com/mvallautomations/review-reply-agent" },
+      { label: "Case Study", href: "/work/review-reply-agent" },
     ],
   },
   {
-    slug: "graceland-farm",
-    eyebrow: "Agriculture · Research",
-    title: "Graceland Farm, Indang Cavite",
+    slug: "inbox-triage-agent",
+    eyebrow: "AI Agents · Operations",
+    title: "Inbox Triage Agent",
     description:
-      "Competitive intelligence report for a family farm. Seven-tab Excel workbook covering market positioning, comparable farm analysis, and infrastructure investment roadmap.",
-    tags: ["Excel", "Research", "Strategy", "Competitive Intel"],
-    status: "in-progress",
-    year: "2025",
+      "Extracts quote details from an inbound email without inventing numbers, and escalates anything touching money or lawyers to a human. 3.19s per run against live executions. The constraint that matters is what it refuses to do unsupervised.",
+    tags: ["n8n", "Claude API", "Structured Extraction"],
+    status: "live",
+    year: "2026",
     showcaseLinks: [
-      { label: "Live Demo (soon)" },
-      { label: "Source Repo (soon)" },
-      { label: "Deployment (soon)" },
-      { label: "Case Study", href: "/work/graceland-farm" },
+      { label: "Source Repo", href: "https://github.com/mvallautomations/inbox-triage-agent" },
+      { label: "Case Study", href: "/work/inbox-triage-agent" },
+    ],
+  },
+  {
+    slug: "content-repurposer-agent",
+    eyebrow: "AI Agents · Content",
+    title: "Content Repurposer Agent",
+    description:
+      "Turns one piece of long-form work into platform-native posts, and gates its own output against brand-voice rules enforced in code rather than in a prompt. If the draft breaks a rule, it does not ship.",
+    tags: ["n8n", "Claude API", "Brand-Voice Linting"],
+    status: "live",
+    year: "2026",
+    showcaseLinks: [
+      { label: "Source Repo", href: "https://github.com/mvallautomations/content-repurposer-agent" },
+      { label: "Case Study", href: "/work/content-repurposer-agent" },
+    ],
+  },
+  {
+    slug: "handlit-agent-architect",
+    eyebrow: "AI Agents · Browser",
+    title: "handlit Agent Architect",
+    description:
+      "Chrome side-panel agent that studies a business's site and designs the custom chat agent it actually needs. Bring your own key — runs on Ollama, OpenRouter, or any OpenAI-compatible endpoint, so nothing is locked to a vendor.",
+    tags: ["Chrome Extension", "BYOK", "Ollama", "OpenRouter"],
+    status: "live",
+    year: "2026",
+    showcaseLinks: [
+      { label: "Source Repo", href: "https://github.com/mvallautomations/handlit-agent-architect" },
+      { label: "Case Study", href: "/work/handlit-agent-architect" },
     ],
   },
 ];
@@ -115,8 +143,9 @@ export default function WorkPage() {
                 maxWidth: "55ch",
               }}
             >
-              Pre-revenue builds, family business projects, and strategy work.
-              All done solo, at $0 tooling cost, documented in public.
+              Agents and automation systems built and run against my own operations
+              first. Every entry links to live software or public source — the
+              numbers come from logged executions, not demos.
             </p>
           </div>
         </section>
