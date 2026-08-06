@@ -4,7 +4,9 @@ import { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import RunReplay from "@/components/RunReplay";
+import AgentSimulator from "@/components/AgentSimulator";
 import { demoRunsBySlug } from "@/lib/demo-adapters";
+import { simulatorConfigs } from "@/lib/simulator-configs";
 
 // Rewritten 2026-08-06 (M's call): kuya-koks, ra-bautista and graceland-farm
 // were unpaid engagements not to be presented as client work; ra-bautista was
@@ -301,6 +303,34 @@ export default async function CaseStudyPage({
                 >
                   {project.description}
                 </p>
+
+                {simulatorConfigs[slug] && (
+                  <div>
+                    <p
+                      className="eyebrow"
+                      style={{
+                        marginBottom: "0.5rem",
+                        color: "var(--accent-terra)",
+                      }}
+                    >
+                      Try it
+                    </p>
+                    <p
+                      style={{
+                        fontFamily: "var(--font-dm-sans)",
+                        fontSize: "0.9375rem",
+                        lineHeight: 1.65,
+                        color: "var(--ink-secondary)",
+                        margin: "0 0 1.25rem",
+                      }}
+                    >
+                      A browser-side simulation of the routing logic — pick an
+                      input and watch which rule fires. The logged runs below
+                      are the receipts.
+                    </p>
+                    <AgentSimulator config={simulatorConfigs[slug]} />
+                  </div>
+                )}
 
                 <div>
                   <p
