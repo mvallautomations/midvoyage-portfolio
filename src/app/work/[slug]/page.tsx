@@ -72,7 +72,11 @@ const projectShowcaseLinks: Record<
   string,
   { label: string; href?: string }[]
 > = {
-  "speed-to-lead": [{ label: "Live at handlit.app", href: "https://handlit.app" }],
+  "speed-to-lead": [
+    { label: "Live at handlit.app", href: "https://handlit.app" },
+    { label: "Interactive Demo", href: "https://handlit.app/demo/" },
+    { label: "Case Study", href: "https://handlit.app/case-study-speed-to-lead" },
+  ],
   "review-reply-agent": [
     { label: "Source Repo", href: "https://github.com/mvallautomations/review-reply-agent" },
   ],

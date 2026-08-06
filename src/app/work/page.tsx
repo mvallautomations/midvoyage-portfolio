@@ -32,6 +32,7 @@ const allWork: WorkCardProps[] = [
     featured: true,
     showcaseLinks: [
       { label: "Live at handlit.app", href: "https://handlit.app" },
+      { label: "Interactive Demo", href: "https://handlit.app/demo/" },
       { label: "Case Study", href: "/work/speed-to-lead" },
     ],
   },
