@@ -304,6 +304,31 @@ export default async function CaseStudyPage({
                   {project.description}
                 </p>
 
+                <div>
+                  <p
+                    className="eyebrow"
+                    style={{
+                      marginBottom: "0.5rem",
+                      color: "var(--accent-terra)",
+                    }}
+                  >
+                    The film
+                  </p>
+                  <video
+                    controls
+                    preload="none"
+                    poster={`/videos/agent-demo-${slug}-poster.jpg`}
+                    style={{
+                      width: "100%",
+                      borderRadius: "10px",
+                      border: "1px solid var(--border-light)",
+                      display: "block",
+                    }}
+                  >
+                    <source src={`/videos/agent-demo-${slug}.mp4`} type="video/mp4" />
+                  </video>
+                </div>
+
                 {simulatorConfigs[slug] && (
                   <div>
                     <p
