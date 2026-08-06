@@ -28,7 +28,7 @@ export default function Nav() {
     const stored = localStorage.getItem("mv-theme");
     if (stored === "dark") {
       html.setAttribute("data-theme", "dark");
-      setIsDark(true);
+      setTimeout(() => setIsDark(true), 0);
     }
   }, []);
 

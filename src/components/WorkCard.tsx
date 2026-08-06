@@ -120,13 +120,13 @@ export default function WorkCard({
         style={{
           fontFamily: "var(--font-jakarta)",
           fontWeight: 800,
-          fontSize: featured ? "1.75rem" : "1.375rem",
+          fontSize: "1.75rem",
           lineHeight: 1.15,
           color: "var(--ink-primary)",
           letterSpacing: "-0.02em",
         }}
       >
-        <Link href={`/work/${slug}`} style={{ textDecoration: "none" }}>
+        <Link href={`/work/${slug}`} style={{ textDecoration: "none", color: "inherit" }}>
           {title}
         </Link>
       </h3>
