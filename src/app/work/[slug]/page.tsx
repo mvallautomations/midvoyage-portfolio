@@ -3,6 +3,8 @@ import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import RunReplay from "@/components/RunReplay";
+import { demoRunsBySlug } from "@/lib/demo-adapters";
 
 // Rewritten 2026-08-06 (M's call): kuya-koks, ra-bautista and graceland-farm
 // were unpaid engagements not to be presented as client work; ra-bautista was
@@ -282,6 +284,48 @@ export default async function CaseStudyPage({
           }}
         >
           <div className="mv-container" style={{ maxWidth: "72ch" }}>
+            {demoRunsBySlug[slug] ? (
+              <div style={{ display: "grid", gap: "2rem" }}>
+                <p
+                  style={{
+                    fontFamily: "var(--font-dm-sans)",
+                    fontSize: "1.0625rem",
+                    lineHeight: 1.7,
+                    color: "var(--ink-secondary)",
+                    margin: 0,
+                  }}
+                >
+                  {project.description}
+                </p>
+
+                <div>
+                  <p
+                    className="eyebrow"
+                    style={{
+                      marginBottom: "0.5rem",
+                      color: "var(--accent-terra)",
+                    }}
+                  >
+                    Logged runs
+                  </p>
+                  <p
+                    style={{
+                      fontFamily: "var(--font-dm-sans)",
+                      fontSize: "0.9375rem",
+                      lineHeight: 1.65,
+                      color: "var(--ink-secondary)",
+                      margin: "0 0 1.25rem",
+                    }}
+                  >
+                    Each replay below animates a logged n8n execution at the
+                    speed it actually ran — the decision path, the output, and
+                    the latency come straight from the execution log. Nothing
+                    staged.
+                  </p>
+                  <RunReplay runs={demoRunsBySlug[slug]} />
+                </div>
+              </div>
+            ) : (
               <div
                 style={{
                   backgroundColor: "var(--bg-surface)",
@@ -328,6 +372,7 @@ export default async function CaseStudyPage({
                   ← Back to all work
                 </Link>
               </div>
+            )}
           </div>
         </section>
       </main>

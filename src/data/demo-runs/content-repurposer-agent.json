@@ -1,0 +1,32 @@
+[
+  {
+    "execution": "32",
+    "status": "success",
+    "seconds": 6.91,
+    "routed_to": "Send Drafts",
+    "created_at": "2026-08-05T15:37:54.341Z",
+    "source_title": "Built a review-reply agent that refuses to post",
+    "angle": "counterintuitive claim",
+    "why": "Spoken version keeps the refusal as the lead and emphasizes speed and zero cost as proof of efficiency.",
+    "linkedin_post": "Built an n8n + Claude agent that reads customer reviews and refuses to post most of them.\n\nIt classifies sentiment, decides what needs human eyes, drafts replies. Three live runs averaged 3.48 seconds. A 5-star got queued for one-tap approval. A 2-star alleging food poisoning went straight to escalation. A 1-star about a child's rash? The model declined to draft anything at all—then explained why in the output instead of leaving a blank.\n\nThe refusal rules live in code, not prompts. Unparseable output escalates rather than guesses.\n\nZero cost beyond tokens. Self-hosted n8n, database, Telegram alerts.",
+    "carousel": "This AI agent's job is to refuse. — It reads reviews. It classifies them. It drafts replies. It almost never posts.\n5-star review: queued for approval. — 2-star with food poisoning claim: escalated immediately. 1-star about a rash: declined to reply at all.\nSpeed: 3.48 seconds average. — Sentiment + topic classification + routing decision + draft, all in under 4 seconds per review.\nRefusal is coded, not prompted. — Escalation rules live in n8n logic. Unparseable model output escalates instead of guessing.\nCost: tokens only. — Self-hosted n8n, database, Telegram alerts. No subscription fees. No guard rails you don't control.",
+    "video_script": "I built a review agent that almost never posts anything. It reads incoming reviews, classifies sentiment, and decides what a human needs to see. Most replies get drafted and queued for approval. But a review alleging food poisoning? Escalated. A review about a child's rash? The model refused to draft a reply at all—then explained why. The whole thing runs in 3.48 seconds. Cost is zero beyond tokens.",
+    "voice_flags": "",
+    "needs_rewrite": false
+  },
+  {
+    "execution": "33",
+    "status": "success",
+    "seconds": 7.25,
+    "routed_to": "Flag for Rewrite",
+    "created_at": "2026-08-05T15:38:46.271Z",
+    "source_title": "Why every founder must unlock 10x growth",
+    "angle": "constraint as brief",
+    "why": "The source is pure template language with no real insight. Flipping to constraints—what actually stops founders—creates credibility by naming the real problem instead of the hype.",
+    "linkedin_post": "Most founders don't need 10x growth. They need to stop building features no one asked for.\n\nI spent six months automating a process that didn't matter. The real bottleneck was always the same: I was doing work a $50/month tool could handle.\n\nAI doesn't unlock growth. Removing what shouldn't exist in the first place does.\n\nStart there.",
+    "carousel": "10x growth is a distraction — Most founders chase it while ignoring the work that's actually killing their time.\nI automated the wrong thing first — Built a workflow for a process I should've deleted. Wasted two weeks.\nThe real bottleneck is always visible — Track what you do for 48 hours. The answer is in there.\nAI works best on boring, repetitive tasks — Not on decisions. Not on strategy. On the stuff you hate doing twice.\nStart with subtraction, not automation — What can you stop doing? That's where the real time comes from.",
+    "video_script": "Every founder talks about 10x growth. Nobody talks about the work that shouldn't exist. I spent a month automating a process I should've deleted. The real bottleneck isn't your tools. It's doing things that don't matter. Track what you actually do for two days. That answer—that's where you start.",
+    "voice_flags": "10x, unlock, linkedin length 57 words",
+    "needs_rewrite": true
+  }
+]

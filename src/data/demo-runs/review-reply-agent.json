@@ -1,0 +1,65 @@
+[
+  {
+    "execution": "25",
+    "status": "success",
+    "seconds": 3.53,
+    "path": [
+      "Review Intake",
+      "Claude Haiku",
+      "AI Review Analyst",
+      "Parse & Merge",
+      "Has review?",
+      "Log to Reviews",
+      "Needs a human?",
+      "Queue for Approval"
+    ],
+    "rating": 5,
+    "sentiment": "positive",
+    "needs_human": false,
+    "topics": "food quality, sisig, staff hospitality, parking",
+    "reason": "Straightforward 5-star praise with no complaints or concerns.",
+    "draft_reply": "Thanks so much, Marites. We're proud of our sisig—that's exactly the kind of compliment that means everything to us. Glad the team made you feel welcome to linger and enjoy it."
+  },
+  {
+    "execution": "26",
+    "status": "success",
+    "seconds": 3.39,
+    "path": [
+      "Review Intake",
+      "Claude Haiku",
+      "AI Review Analyst",
+      "Parse & Merge",
+      "Has review?",
+      "Log to Reviews",
+      "Needs a human?",
+      "Escalate to Owner"
+    ],
+    "rating": 2,
+    "sentiment": "negative",
+    "needs_human": true,
+    "topics": "long wait, alleged foodborne illness, staff conflict, legal threat",
+    "reason": "Rating is 2/5, alleges illness, names staff member negatively, and threatens reporting to regulators.",
+    "draft_reply": ""
+  },
+  {
+    "execution": "27",
+    "status": "success",
+    "seconds": 3.51,
+    "path": [
+      "Review Intake",
+      "Claude Haiku",
+      "AI Review Analyst",
+      "Parse & Merge",
+      "Has review?",
+      "Log to Reviews",
+      "Needs a human?",
+      "Escalate to Owner"
+    ],
+    "rating": 1,
+    "sentiment": "negative",
+    "needs_human": true,
+    "topics": "no-show, health/safety, child injury, staff misconduct, regulatory threat",
+    "reason": "Rating 1, alleges child illness/injury, safety concern in petting area, staff misconduct, and explicit threat of regulatory contact (DTI).",
+    "draft_reply": "(No draft written. This one is serious enough that a suggested reply would do more harm than good - write it yourself.)"
+  }
+]
