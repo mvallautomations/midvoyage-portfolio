@@ -231,12 +231,11 @@ export default function ServicesPage() {
               }}
             >
               The proof behind each service is my own operations — every system
-              is tested on my own business first, with logged runs on the{" "}
+              is tested on my own business first, and the numbers on the{" "}
               <a href="/work" style={{ color: "var(--ink-primary)" }}>
                 work page
-              </a>
-              . No client logos, because there are no clients yet. That is
-              stated, not hidden.
+              </a>{" "}
+              come from logged runs, not projections.
             </p>
           </div>
         </section>
