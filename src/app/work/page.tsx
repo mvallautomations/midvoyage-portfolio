@@ -90,6 +90,21 @@ const allWork: WorkCardProps[] = [
     showcaseLinks: [
       { label: "Source Repo", href: "https://github.com/mvallautomations/handlit-agent-architect" },
       { label: "Case Study", href: "/work/handlit-agent-architect" },
+      { label: "Offer at handlit.app", href: "https://handlit.app/#agent-architect" },
+    ],
+  },
+  {
+    slug: "foss-lead-engine",
+    eyebrow: "AI Systems · Prospecting",
+    title: "Lead-Gen Engine — open-source core",
+    description:
+      "A prospecting pipeline that scrapes, scores each prospect 0–100 against an ideal customer profile, personalizes a first line, and stages the outreach. The open-source core replaced roughly $350 a month of SaaS with about 600 lines of dependency-free Python — live OpenStreetMap extraction, SQLite persistence, an audit log. The public demo dashboard runs on simulated data, and the page says so.",
+    tags: ["Python", "OpenStreetMap", "SQLite", "n8n"],
+    status: "live",
+    year: "2026",
+    showcaseLinks: [
+      { label: "Live at handlit.app", href: "https://handlit.app/systems/lead-engine.html" },
+      { label: "Interactive Demo", href: "https://handlit.app/demos/lead-dashboard/" },
     ],
   },
 ];
