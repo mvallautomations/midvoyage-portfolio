@@ -9,23 +9,22 @@ import "./globals.css";
 
 /* ============================================================
    mid·voyage — Root Layout
-   Fonts loaded via next/font for zero-FOUT, self-hosted
+   Fonts self-hosted via next/font; only the weights/styles the
+   design system actually uses are loaded (LCP: fewer preloads)
    ============================================================ */
 
-// Display + headings: Plus Jakarta Sans 800
+// Display + headings: Plus Jakarta Sans 800 (the only weight used anywhere)
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  style: ["normal", "italic"],
+  weight: ["800"],
   variable: "--font-jakarta",
   display: "swap",
 });
 
-// Body: DM Sans
+// Body: DM Sans (no italic usage in the codebase)
 const dmSans = DM_Sans({
   subsets: ["latin"],
   weight: ["300", "400", "500"],
-  style: ["normal", "italic"],
   variable: "--font-dm-sans",
   display: "swap",
 });
@@ -34,7 +33,7 @@ const dmSans = DM_Sans({
 const dmSerifDisplay = DM_Serif_Display({
   subsets: ["latin"],
   weight: ["400"],
-  style: ["normal", "italic"],
+  style: ["italic"],
   variable: "--font-dm-serif",
   display: "swap",
 });
@@ -48,6 +47,10 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://mvallarautomations.cc"),
+  alternates: {
+    canonical: "./",
+  },
   title: {
     default: "Mishael Vallar — mid·voyage",
     template: "%s — mid·voyage",

@@ -179,12 +179,18 @@ code, pre, .mono, .label, nav, .badge, .caption { font-family: var(--font-mono);
 .btn:hover, .mv-btn:hover { border-color: var(--accent-terra); }
 
 /* ---- Animations ---------------------------------------------------------- */
+/* Transform-only: animating opacity from 0 hid the hero h1 from LCP timing
+   (Chrome can't record LCP until the element paints) — keep the rise, skip
+   the fade so first paint is also the recorded LCP. */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+  from { transform: translateY(10px); }
+  to { transform: translateY(0); }
 }
 .fade-up {
   animation: fadeIn var(--dur-slow) var(--ease-out) forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { animation: none; }
 }
 
 /* ============================================================================
