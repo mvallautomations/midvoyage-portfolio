@@ -14,13 +14,27 @@
   overflow: hidden;
 }
 
-.featuredImage,
+.featuredMedia {
+  display: grid;
+  min-width: 0;
+  place-items: center;
+  overflow: hidden;
+  background: var(--bg-elevated);
+  border-right: 1px solid var(--border-subtle);
+}
+
+.featuredImage {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  display: block;
+}
+
 .featuredPlaceholder {
   width: 100%;
   height: 100%;
   min-height: 25rem;
-  object-fit: cover;
-  border-right: 1px solid var(--border-subtle);
 }
 
 .featuredPlaceholder {
@@ -151,12 +165,14 @@
     grid-template-columns: 1fr;
   }
 
-  .featuredImage,
+  .featuredMedia {
+    border-right: 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
   .featuredPlaceholder {
     min-height: 0;
     aspect-ratio: 16 / 9;
-    border-right: 0;
-    border-bottom: 1px solid var(--border-subtle);
   }
 }
 

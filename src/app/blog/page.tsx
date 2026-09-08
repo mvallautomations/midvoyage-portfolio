@@ -42,18 +42,20 @@ export default async function BlogPage() {
             <div className="mv-container">
               <p className={`eyebrow ${styles.sectionLabel}`}>Latest dispatch</p>
               <article className={`mv-card ${styles.featuredCard}`}>
-                {featuredPost.coverImage ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={featuredPost.coverImage}
-                    alt={featuredPost.coverAlt}
-                    className={styles.featuredImage}
-                  />
-                ) : (
-                  <div className={styles.featuredPlaceholder} aria-hidden="true">
-                    <span>mid·voyage</span>
-                  </div>
-                )}
+                <div className={styles.featuredMedia}>
+                  {featuredPost.coverImage ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={featuredPost.coverImage}
+                      alt={featuredPost.coverAlt}
+                      className={styles.featuredImage}
+                    />
+                  ) : (
+                    <div className={styles.featuredPlaceholder} aria-hidden="true">
+                      <span>mid·voyage</span>
+                    </div>
+                  )}
+                </div>
                 <div className={styles.featuredCopy}>
                   <p className="eyebrow">
                     {featuredPost.publishedAt ? formatDate(featuredPost.publishedAt) : "Unpublished"}
