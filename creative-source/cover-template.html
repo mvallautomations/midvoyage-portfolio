@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>mid·voyage 9:16 cover export</title>
+    <style>
+      @font-face {
+        font-family: "Plus Jakarta Sans";
+        src: url("./fonts/PlusJakartaSans-ExtraBold.ttf") format("truetype");
+        font-weight: 800;
+      }
+      @font-face {
+        font-family: "DM Serif Display";
+        src: url("./fonts/DMSerifDisplay-Italic.ttf") format("truetype");
+        font-style: italic;
+      }
+      * { box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; margin: 0; overflow: hidden; }
+      body { background: #edeae3; color: #18171a; }
+      .cover {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #edeae3;
+        isolation: isolate;
+      }
+      .art {
+        position: absolute;
+        inset: 0;
+        z-index: -3;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .wash {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        background:
+          linear-gradient(180deg, rgba(237, 234, 227, 0.99) 0%, rgba(237, 234, 227, 0.97) 45%, rgba(237, 234, 227, 0.72) 61%, rgba(237, 234, 227, 0.08) 78%),
+          linear-gradient(90deg, rgba(237, 234, 227, 0.35), transparent 55%);
+      }
+      .grain {
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+        pointer-events: none;
+        opacity: 0.14;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
+        mix-blend-mode: multiply;
+      }
+      .frame {
+        position: absolute;
+        inset: 64px;
+        border: 2px solid rgba(24, 23, 26, 0.16);
+      }
+      .rule { position: absolute; left: 64px; right: 64px; top: 190px; height: 2px; background: rgba(24, 23, 26, 0.18); }
+      .kicker {
+        position: absolute;
+        top: 108px;
+        left: 88px;
+        font: 800 23px/1 "Courier New", monospace;
+        letter-spacing: 0.16em;
+        color: #c85a3c;
+        text-transform: uppercase;
+      }
+      .series {
+        position: absolute;
+        top: 108px;
+        right: 88px;
+        font: 700 21px/1 "Courier New", monospace;
+        letter-spacing: 0.12em;
+        color: #5a5855;
+        text-transform: uppercase;
+      }
+      .title {
+        position: absolute;
+        top: 255px;
+        left: 88px;
+        right: 82px;
+        margin: 0;
+        font-family: "Plus Jakarta Sans", Arial, sans-serif;
+        font-size: 108px;
+        font-weight: 800;
+        letter-spacing: -0.052em;
+        line-height: 0.99;
+      }
+      .title .ghost {
+        font-family: "DM Serif Display", Georgia, serif;
+        font-weight: 400;
+        font-style: italic;
+        color: #888480;
+        letter-spacing: -0.025em;
+      }
+      .metric {
+        position: absolute;
+        top: 810px;
+        left: 90px;
+        display: none;
+        align-items: center;
+        gap: 22px;
+        font: 700 25px/1.2 "Courier New", monospace;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .metric.show { display: flex; }
+      .metric .old { color: #888480; text-decoration: line-through; text-decoration-color: #c85a3c; text-decoration-thickness: 3px; }
+      .metric .arrow { color: #c85a3c; }
+      .metric .new { color: #18171a; }
+      .footer {
+        position: absolute;
+        left: 88px;
+        right: 88px;
+        bottom: 98px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+        font: 700 20px/1.25 "Courier New", monospace;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #5a5855;
+      }
+      .brand { color: #18171a; }
+      .brand::before { content: ""; display: inline-block; width: 12px; height: 12px; margin-right: 14px; background: #c85a3c; border-radius: 50%; }
+    </style>
+  </head>
+  <body>
+    <main class="cover" aria-label="mid·voyage article cover">
+      <img class="art" alt="" />
+      <div class="wash"></div>
+      <div class="frame"></div>
+      <div class="rule"></div>
+      <p class="kicker"></p>
+      <p class="series">Build note</p>
+      <h1 class="title"></h1>
+      <div class="metric"><span class="old">6.75 sec</span><span class="arrow">→</span><span class="new">7.4 sec · record first</span></div>
+      <div class="footer"><span class="brand">mid·voyage</span><span>Blog / LinkedIn</span></div>
+      <div class="grain"></div>
+    </main>
+    <script>
+      const covers = {
+        "slower-number": { kicker: "Speed-to-lead", title: "Why I Kept the <span class='ghost'>Slower</span> Number", metric: true },
+        "browser-blueprint": { kicker: "Browser agents", title: "A Browser Agent That Stops at the <span class='ghost'>Blueprint</span>" },
+        "inbox-alerts": { kicker: "Inbox automation", title: "The Inbox Alerts Looked <span class='ghost'>Healthy</span>" },
+        "review-agent": { kicker: "Review automation", title: "The Safest Review Agent <span class='ghost'>Never</span> Posts" },
+        "owned-lead-engine": { kicker: "Open data", title: "The <span class='ghost'>Owned</span> Lead Engine" },
+        "brand-guardrail": { kicker: "Content automation", title: "The Prompt Is Not the Brand <span class='ghost'>Guardrail</span>" }
+      };
+      const slug = new URLSearchParams(location.search).get("slug") || "slower-number";
+      const cover = covers[slug] || covers["slower-number"];
+      document.querySelector(".art").src = `./${slug}-background.png`;
+      document.querySelector(".kicker").textContent = cover.kicker;
+      document.querySelector(".title").innerHTML = cover.title;
+      document.querySelector(".metric").classList.toggle("show", Boolean(cover.metric));
+    </script>
+  </body>
+</html>

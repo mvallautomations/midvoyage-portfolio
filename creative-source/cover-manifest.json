@@ -1,0 +1,15 @@
+{
+  "format": "9:16",
+  "width": 1080,
+  "height": 1920,
+  "channels": ["midvoyage-blog", "linkedin"],
+  "template": "cover-template.html",
+  "covers": [
+    { "id": "slower-number", "articleSlug": "lead-speed-starts-with-the-crm" },
+    { "id": "browser-blueprint", "articleSlug": "a-browser-agent-that-stops-at-the-blueprint" },
+    { "id": "inbox-alerts", "articleSlug": "inbox-alerts-that-looked-healthy" },
+    { "id": "review-agent", "articleSlug": "safest-review-agent-never-posts" },
+    { "id": "owned-lead-engine", "articleSlug": "the-owned-lead-engine" },
+    { "id": "brand-guardrail", "articleSlug": "the-prompt-is-not-the-brand-guardrail" }
+  ]
+}
